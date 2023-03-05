@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2daaafd9b5e4da64bafa5c50d5027c15, type: 3}
+  m_Name: Game State
+  m_EditorClassIdentifier: 
+  currentGameState: {fileID: 11400000, guid: 1c9c1d01fcc57f242ac2162d5d4e61c3, type: 2}
+  purchase: {fileID: 11400000, guid: 1c9c1d01fcc57f242ac2162d5d4e61c3, type: 2}
+  bulldoze: {fileID: 11400000, guid: 8f9284f549589844e8010cc10a7a82db, type: 2}
+  toPlace: {fileID: 7784108669578525452, guid: fffd946271093ad47aa0efe495e71b34, type: 3}

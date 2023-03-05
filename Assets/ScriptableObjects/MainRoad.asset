@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4c682c9ba227804aa103dbee4240241, type: 3}
+  m_Name: MainRoad
+  m_EditorClassIdentifier: 
+  currentRoad: {fileID: 3554202553794797108, guid: 7642bfc4c8482244a836b35d97029ffd, type: 3}
+  mainRoad: {fileID: 7784108669578525452, guid: fffd946271093ad47aa0efe495e71b34, type: 3}
+  secondRoad: {fileID: 3554202553794797108, guid: 7642bfc4c8482244a836b35d97029ffd, type: 3}
+  vertical: {fileID: 3554202553794797108, guid: 7642bfc4c8482244a836b35d97029ffd, type: 3}
+  horizontal: {fileID: 7784108669578525452, guid: fffd946271093ad47aa0efe495e71b34, type: 3}
+  rightBottom: {fileID: 1752848003986672408, guid: b05413da48762d74a8d5db41c5eb1bdc, type: 3}
+  leftBottom: {fileID: 1752848003986672408, guid: 87812f045e5658c43a217f7f75d4380b, type: 3}
+  thirdBottom: {fileID: 5138714269565966705, guid: 7d58a255fd1eba0459f763af98d0bbc2, type: 3}
+  thirdUp: {fileID: 5138714269565966705, guid: b4c12efd19e778241837e1f131e299f2, type: 3}
+  thirdRight: {fileID: 5138714269565966705, guid: 551abbe9a96d98748833c330ee8a4769, type: 3}
+  thirdLeft: {fileID: 5138714269565966705, guid: c908252b88be1814e9c75c1129bf66b3, type: 3}
+  rightUp: {fileID: 1752848003986672408, guid: 6b0c12f73ccc1464c862ccd62002b796, type: 3}
+  leftUp: {fileID: 1752848003986672408, guid: bd2c769559e2540498170d489143ef53, type: 3}
+  fourWays: {fileID: 3554202553794797108, guid: 94705a97863f07e4ebf3798cf1a0a4c1, type: 3}

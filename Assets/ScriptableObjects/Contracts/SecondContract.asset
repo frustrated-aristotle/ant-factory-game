@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fba25cb11fb80a4d9915fd22f86696b, type: 3}
+  m_Name: SecondContract
+  m_EditorClassIdentifier: 
+  manager: {fileID: 4276109634733722265, guid: d9a870087c81e3243af14a1c20b8e1ad, type: 3}
+  image: {fileID: 0}
+  contractName: Second Contract
+  currentOrderedGoods: 216
+  currentDeliverTime: 216
+  currentGain: 204
+  currentLose: 210
+  mainOrderedGoods: 100
+  mainDeliverTime: 100
+  mainGain: 100
+  mainLose: 100
+  deliveredGoods: 0
+  type: 2
