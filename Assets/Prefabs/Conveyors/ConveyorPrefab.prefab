@@ -10,9 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 2592065064504242137}
   - component: {fileID: 2592065064504242136}
-  - component: {fileID: 4600975927352483467}
   - component: {fileID: 1055474375766588050}
   - component: {fileID: 911118674733400141}
+  - component: {fileID: 5409608417760088666}
+  - component: {fileID: 4600975927352483467}
+  - component: {fileID: 2076996416360897695}
   m_Layer: 6
   m_Name: ConveyorPrefab
   m_TagString: Connectable
@@ -87,27 +89,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4600975927352483467
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2592065064504242143}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c3c8b2ef56f594488d1c9939bbc2a1f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isItABuilding: 0
-  isItFertile: 0
-  hasNeighboursFound: 0
-  emptyTile: {fileID: 2592065064504242143}
-  path: []
-  gameState: {fileID: 11400000, guid: 2f36e77f4b7dc664081473818f61545d, type: 2}
-  roadScriptableObject: {fileID: 11400000, guid: c098300e96e63b04da3505b3278552bf, type: 2}
-  neighbours: []
-  adjacentConveyorBelts: []
 --- !u!61 &1055474375766588050
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -155,3 +136,60 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!114 &5409608417760088666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2592065064504242143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f977440880a2c24ea33f5ad07002a5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hasRight: 0
+  hasLeft: 0
+  hasDown: 0
+  hasUp: 0
+--- !u!114 &4600975927352483467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2592065064504242143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c3c8b2ef56f594488d1c9939bbc2a1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isItABuilding: 0
+  isItFertile: 0
+  hasNeighboursFound: 0
+  emptyTile: {fileID: 2592065064504242143}
+  path: []
+  gameState: {fileID: 11400000, guid: 2f36e77f4b7dc664081473818f61545d, type: 2}
+  roadScriptableObject: {fileID: 11400000, guid: c098300e96e63b04da3505b3278552bf, type: 2}
+  neighbours: []
+  adjacentConveyorBelts: []
+--- !u!95 &2076996416360897695
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2592065064504242143}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b3cf8d7a84dac324f83bd1422ae9e6b0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0

@@ -15,7 +15,8 @@
     private BuyAndPlaceBuildables buyAndPlaceBuildables;
     private TransporterManager transporterManager;
     private PathCreationManager pathCreationManager;
-
+    private BuildingUIScript buildingUI;
+    
     [SerializeField]
     private GameStateSO gameState;
 
@@ -34,6 +35,7 @@
         buyAndPlaceBuildables = GameObject.FindObjectOfType<BuyAndPlaceBuildables>();
         transporterManager = GameObject.FindObjectOfType<TransporterManager>();
         pathCreationManager = GameObject.FindObjectOfType<PathCreationManager>();
+        buildingUI = GameObject.FindObjectOfType<BuildingUIScript>();
     }
     private bool IsItAlreadyOnTheNeighboursList(GameObject col)
     {
@@ -187,7 +189,7 @@
     private void OnMouseDown()
     {
         //! If the game state is buying, we can do proceed.
-        if(gameState.IsTheStatePurchase())
+        if(gameState.IsTheStatePurchase() && !buildingUI.CanMouseClick())
         {
             //There are lots of buildable to purchase. We will give the purchase method
             //via the gamestate because it can say which building our player wants to place
@@ -227,6 +229,11 @@
         else if (gameState.currentGameState == gameState.bulldoze && GetComponent<ConveyorBelt>())
         {
             buyAndPlaceBuildables.Buy(gameObject, emptyTile);
+            Debug.Log("Its else if and it seems not suitable");
+        }
+        else
+        {
+            Debug.Log("Else is working. game state: " + gameState.IsTheStatePurchase() + "Is this tile clickable: " + buildingUI.CanMouseClick());
         }
         /*else if (gameState.currentGameState == "Path Creation" && isItABuilding)
         {

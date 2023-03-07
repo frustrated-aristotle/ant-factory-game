@@ -26,7 +26,7 @@ public class GameStateSO : ScriptableObject
     }
     
     #endregion
-
+    
     private void ChangeTheState(GameStateSO state)
     {
         currentGameState = state;

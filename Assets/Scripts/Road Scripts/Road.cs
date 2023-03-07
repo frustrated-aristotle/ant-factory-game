@@ -114,7 +114,6 @@ public class Road : MonoBehaviour
         } 
         else
         {
-            Debug.Log("Else is working: " + hasDown);
         }
     }
     private void UpgradeVertical()
