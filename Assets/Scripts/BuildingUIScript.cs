@@ -8,19 +8,6 @@ public class BuildingUIScript : MonoBehaviour
     private float y1 = 200;
     private float y2 = 375;
 
-    private void Update()
-    {
-        if (CanMouseClick())
-        {
-            Debug.Log("Inside: " + Input.mousePosition);
-        }
-        else
-        {
-            Debug.Log("Not inside: "  + Input.mousePosition);
-        }
-
-    }
-
     /// <summary>
     /// This method checks if the mouse is outside of the building menu's boundaries.
     /// To prevent placing buildings when the mouse is on building menu, we'll use this checker.

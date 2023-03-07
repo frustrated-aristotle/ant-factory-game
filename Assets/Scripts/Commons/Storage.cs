@@ -8,59 +8,38 @@ public class Storage : MonoBehaviour
 {
     public int input;
     public int output;
-    public int outputRate;
-
+    public int outputPerSecond;
+    public ConveyorBelt startingConveyor;
     public GameObject good;
-    public Road road;
 
-    //When a transporter collides with a building, it either fulls his storage or empty it. 
+    private Vector3 posToInstantiate;
+
     private void Start()
     {
-        SendProducedToTheConveyor(road);
+        InvokeRepeating(nameof(CreateGoodAtConveyorBelt), 0f, 1f);
     }
 
-    private void SendProducedToTheConveyor(Road road)
+    private void CreateGoodAtConveyorBelt()
     {
-        Instantiate(good, road.transform.position, quaternion.identity);
-        
+        if (startingConveyor != null)
+        {
+            posToInstantiate = startingConveyor.instantiationPos;
+            if(CanGiveOutput())
+            {
+                for (int i = 0; i < outputPerSecond; i++)
+                {
+                    Instantiate(good, posToInstantiate, quaternion.identity);
+                }
+            }
+        }
     }
-    public void GiveOutput(VehicleStorage transporter)
+
+    private bool CanGiveOutput()
     {
-        //There are some cases:
-        // output is equal to capacity
-        //      give all of the output
-        //  output is more than the capacity
-        //      give the exact amount of capacity
-        // output is less than the capacity
-        //      give all of the output
-        if(output > transporter.capacity)
+        if (output > outputPerSecond)
         {
-            output -= transporter.capacity;
-            transporter.stored += transporter.capacity;
+            return true;
         }
-        else if(output == transporter.capacity)
-        {
-            output -= transporter.capacity;
-            transporter.stored += transporter.capacity;
-        }
-        else if(output < transporter.capacity)
-        {
-            transporter.stored += output;
-            output -= output;
-        }
+        return false;
     }
-
-    public void TakeInput(VehicleStorage transporter)
-    {
-        // there are some cases here too:
-        if(transporter.stored > 0)
-        {
-            input += transporter.stored;
-            transporter.stored = 0;
-        }
-        
-    }
-
-
-
 }

@@ -22,11 +22,11 @@ public class VehicleCollide : MonoBehaviour, ICollidable
         //Transportation works just one way: transporter takes output of the home and deliver it to destination as input of it.
         if(col.gameObject == vehicleMovement.realHome)
         {
-            vehicleMovement.realHome.GetComponent<Storage>().GiveOutput(vehicleStorage);
+            //vehicleMovement.realHome.GetComponent<Storage>().GiveOutput(vehicleStorage);
         }
         else if(col.gameObject == vehicleMovement.realDestination)
         {
-            vehicleMovement.realDestination.GetComponent<Storage>().TakeInput(vehicleStorage);
+            //vehicleMovement.realDestination.GetComponent<Storage>().TakeInput(vehicleStorage);
         }
     }
 }

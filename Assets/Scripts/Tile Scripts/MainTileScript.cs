@@ -122,6 +122,7 @@
         {
             if (neighbour.CompareTag("Conveyor") && !adjacentConveyorBelts.Contains(neighbour.GetComponent<ConveyorBelt>()))
             {
+                
                 adjacentConveyorBelts.Add(neighbour.GetComponent<ConveyorBelt>());
                 CheckSides(neighbour.GetComponent<ConveyorBelt>());
             }
@@ -153,16 +154,29 @@
         Vector3 position = transform.position;
         float x = position.x;
         float y = position.y;
-        
+
         if (conveyorX > x && conveyorY == y)
-            this.gameObject.GetComponent<ConveyorBelt>().hasRight = true;
-        if (conveyorX < x && conveyorY == y )
-            this.gameObject.GetComponent<ConveyorBelt>().hasLeft = true;
-        if (conveyorY > y && conveyorX == x )
-            this.gameObject.GetComponent<ConveyorBelt>().hasUp = true;
+        {
+            conveyor.hasRight = true;
+            //this.gameObject.GetComponent<ConveyorBelt>().hasRight = true;
+            GetComponent<Storage>().startingConveyor = conveyor;
+        }
+        if (conveyorX < x && conveyorY == y)
+        {
+            conveyor.hasLeft = true;
+            //this.gameObject.GetComponent<ConveyorBelt>().hasLeft = true;
+        }
+
+        if (conveyorY > y && conveyorX == x)
+        {
+            conveyor.hasUp = true;
+            //this.gameObject.GetComponent<ConveyorBelt>().hasUp = true;
+        }
         if (conveyorY < y && conveyorX == x )
         {
-            this.gameObject.GetComponent<ConveyorBelt>().hasDown = true;
+            Debug.Log("This: " + this);
+            conveyor.hasDown = true;
+            //this.gameObject.GetComponent<ConveyorBelt>().hasDown = true;
         }
     }
     /*private void CheckSides(GameObject conveyor)
@@ -230,10 +244,6 @@
         {
             buyAndPlaceBuildables.Buy(gameObject, emptyTile);
             Debug.Log("Its else if and it seems not suitable");
-        }
-        else
-        {
-            Debug.Log("Else is working. game state: " + gameState.IsTheStatePurchase() + "Is this tile clickable: " + buildingUI.CanMouseClick());
         }
         /*else if (gameState.currentGameState == "Path Creation" && isItABuilding)
         {

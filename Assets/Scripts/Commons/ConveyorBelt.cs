@@ -5,6 +5,13 @@ using UnityEngine;
 public class ConveyorBelt : MonoBehaviour
 {
    public bool hasRight, hasLeft, hasDown, hasUp;
+   public Vector3 instantiationPos;
+   public Vector3 targetPos;
+   private void Awake()
+   {
+      instantiationPos = transform.GetChild(0).GetComponent<Transform>().position;
+      targetPos = transform.GetChild(1).GetComponent<Transform>().position;
+   }
 
    private void Start()
    {
@@ -15,8 +22,4 @@ public class ConveyorBelt : MonoBehaviour
          neighbour.GetComponent<MainTileScript>().CheckConveyors();
       }
    }
-   /*public bool IsNeighbourSuitableByItsType(ConveyorBelt adjConveyor)
-   {
-      
-   }*/
 }
