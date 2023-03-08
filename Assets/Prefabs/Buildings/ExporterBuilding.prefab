@@ -20,7 +20,7 @@ GameObject:
   - component: {fileID: 3875519563097855987}
   m_Layer: 7
   m_Name: ExporterBuilding
-  m_TagString: Untagged
+  m_TagString: Buildings
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -102,7 +102,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -170,6 +170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isItABuilding: 1
+  isItFertile: 0
   hasNeighboursFound: 0
   emptyTile: {fileID: 0}
   path: []
@@ -180,7 +181,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  adjacentRoads: []
+  adjacentConveyorBelts: []
 --- !u!114 &3094608192897625226
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,6 +208,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   input: 0
   output: 0
+  outputPerSecond: 1
+  startingConveyor: {fileID: 0}
+  good: {fileID: 1840962344632121874, guid: 79197f521cf2ef946ae3512f8d604fba, type: 3}
 --- !u!114 &2441062626076601484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,6 +230,7 @@ MonoBehaviour:
   produceAmount: 10
   consumeAmount: 5
   factoryResourcesSo: {fileID: 11400000, guid: 88637bca9ddaac0489b1bd1a009263a7, type: 2}
+  remainedGoodsToDeliverTXT: {fileID: 0}
 --- !u!95 &3875519563097855987
 Animator:
   serializedVersion: 5

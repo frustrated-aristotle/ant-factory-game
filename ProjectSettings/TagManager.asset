@@ -7,6 +7,7 @@ TagManager:
   - Connectable
   - Road
   - Conveyor
+  - Buildings
   layers:
   - Default
   - TransparentFX
@@ -16,8 +17,8 @@ TagManager:
   - UI
   - Empty Tiles
   - Building
-  - 
-  - 
+  - Goods
+  - Conveyors
   - 
   - 
   - 

@@ -122,9 +122,9 @@
         {
             if (neighbour.CompareTag("Conveyor") && !adjacentConveyorBelts.Contains(neighbour.GetComponent<ConveyorBelt>()))
             {
-                
                 adjacentConveyorBelts.Add(neighbour.GetComponent<ConveyorBelt>());
                 CheckSides(neighbour.GetComponent<ConveyorBelt>());
+                //We need to upgrade.
             }
         }
     }
@@ -146,37 +146,48 @@
         }
     }*/
     //
-    private void CheckSides(ConveyorBelt conveyor)
+    private void CheckSides(ConveyorBelt neighbourConveyor)
     {
-        Vector3 conveyorPos = conveyor.transform.position;
+        Vector3 conveyorPos = neighbourConveyor.transform.position;
         float conveyorX = conveyorPos.x;
         float conveyorY = conveyorPos.y;
-        Vector3 position = transform.position;
+        Vector3 position = this.transform.position;
         float x = position.x;
         float y = position.y;
 
         if (conveyorX > x && conveyorY == y)
         {
-            conveyor.hasRight = true;
-            //this.gameObject.GetComponent<ConveyorBelt>().hasRight = true;
-            GetComponent<Storage>().startingConveyor = conveyor;
-        }
-        if (conveyorX < x && conveyorY == y)
-        {
-            conveyor.hasLeft = true;
-            //this.gameObject.GetComponent<ConveyorBelt>().hasLeft = true;
-        }
+            Debug.Log("neighbourConveyor");
+            //neighbourConveyor.hasRight = true;
+            if (isItABuilding)
+            {
+                Debug.Log("Conveyor");
+                GetComponent<Storage>().startingConveyor = neighbourConveyor;
+            }
 
-        if (conveyorY > y && conveyorX == x)
-        {
-            conveyor.hasUp = true;
-            //this.gameObject.GetComponent<ConveyorBelt>().hasUp = true;
+            if (GetComponent<ConveyorBelt>())
+            {
+                this.gameObject.GetComponent<ConveyorBelt>().hasRight = true;
+            }
+
         }
-        if (conveyorY < y && conveyorX == x )
+        else if (conveyorX < x && conveyorY == y)
         {
-            Debug.Log("This: " + this);
-            conveyor.hasDown = true;
-            //this.gameObject.GetComponent<ConveyorBelt>().hasDown = true;
+            //neighbourConveyor.hasLeft = true;
+            if (GetComponent<ConveyorBelt>())
+                this.gameObject.GetComponent<ConveyorBelt>().hasLeft = true;
+        }
+        else if (conveyorY > y && conveyorX == x)
+        {
+           // neighbourConveyor.hasUp = true;
+            if (GetComponent<ConveyorBelt>())
+                this.gameObject.GetComponent<ConveyorBelt>().hasUp = true;
+        }
+        else if (conveyorY < y && conveyorX == x )
+        {
+           // neighbourConveyor.hasDown = true;
+            if (GetComponent<ConveyorBelt>())
+                this.gameObject.GetComponent<ConveyorBelt>().hasDown = true;
         }
     }
     /*private void CheckSides(GameObject conveyor)

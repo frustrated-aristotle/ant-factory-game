@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Storage : MonoBehaviour
@@ -18,6 +19,18 @@ public class Storage : MonoBehaviour
     {
         InvokeRepeating(nameof(CreateGoodAtConveyorBelt), 0f, 1f);
     }
+    
+    #region Input Process
+
+    public void TakeInput(int amount)
+    {
+        input += amount;
+    }
+    
+
+    #endregion
+    
+    #region Output Process
 
     private void CreateGoodAtConveyorBelt()
     {
@@ -28,7 +41,8 @@ public class Storage : MonoBehaviour
             {
                 for (int i = 0; i < outputPerSecond; i++)
                 {
-                    Instantiate(good, posToInstantiate, quaternion.identity);
+                    good.GetComponent<PackageMovementHandler>().firstConveyor = startingConveyor.GameObject();
+                    GameObject a = Instantiate(good, posToInstantiate, quaternion.identity);
                 }
             }
         }
@@ -42,4 +56,9 @@ public class Storage : MonoBehaviour
         }
         return false;
     }
+
+    #endregion
+
+   
+    
 }

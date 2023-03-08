@@ -20,7 +20,7 @@ GameObject:
   - component: {fileID: 2711151335678301796}
   m_Layer: 7
   m_Name: ExcavatorBuilding
-  m_TagString: Untagged
+  m_TagString: Buildings
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -102,7 +102,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -170,6 +170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isItABuilding: 1
+  isItFertile: 0
   hasNeighboursFound: 0
   emptyTile: {fileID: 0}
   path: []
@@ -180,7 +181,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  adjacentRoads: []
+  adjacentConveyorBelts: []
 --- !u!114 &3528610857040033235
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,6 +208,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   input: 0
   output: 0
+  outputPerSecond: 1
+  startingConveyor: {fileID: 0}
+  good: {fileID: 2345599648340736902, guid: c3db132396a0c1b43a7f3b9145372f06, type: 3}
 --- !u!114 &1592064443853193872
 MonoBehaviour:
   m_ObjectHideFlags: 0
