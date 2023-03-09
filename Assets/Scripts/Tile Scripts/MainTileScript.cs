@@ -36,6 +36,7 @@
         transporterManager = GameObject.FindObjectOfType<TransporterManager>();
         pathCreationManager = GameObject.FindObjectOfType<PathCreationManager>();
         buildingUI = GameObject.FindObjectOfType<BuildingUIScript>();
+        CheckConveyors();
     }
     private bool IsItAlreadyOnTheNeighboursList(GameObject col)
     {
@@ -156,8 +157,9 @@
         float y = position.y;
 
         if (conveyorX > x && conveyorY == y)
-        {
-            Debug.Log("neighbourConveyor");
+        {                
+            Debug.Log("Working1: " + this.name);
+
             //neighbourConveyor.hasRight = true;
             if (isItABuilding)
             {
@@ -173,18 +175,24 @@
         }
         else if (conveyorX < x && conveyorY == y)
         {
+                Debug.Log("Working2: " + this.name);
+        
             //neighbourConveyor.hasLeft = true;
             if (GetComponent<ConveyorBelt>())
                 this.gameObject.GetComponent<ConveyorBelt>().hasLeft = true;
         }
         else if (conveyorY > y && conveyorX == x)
         {
+                Debug.Log("Working3: " + this.name);
+        
            // neighbourConveyor.hasUp = true;
             if (GetComponent<ConveyorBelt>())
                 this.gameObject.GetComponent<ConveyorBelt>().hasUp = true;
         }
         else if (conveyorY < y && conveyorX == x )
         {
+                Debug.Log("Working4: " + this.name);
+        
            // neighbourConveyor.hasDown = true;
             if (GetComponent<ConveyorBelt>())
                 this.gameObject.GetComponent<ConveyorBelt>().hasDown = true;

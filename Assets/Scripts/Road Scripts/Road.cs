@@ -43,7 +43,7 @@ public class Road : MonoBehaviour
             
         }
 
-        Upgrade();
+        //Upgrade();
     }
 
     public void Upgrade()
