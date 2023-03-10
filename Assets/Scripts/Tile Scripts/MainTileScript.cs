@@ -56,10 +56,11 @@
         if (col == your) return true;
         else return false;
     }
-    private void OnCollisionEnter2D(Collision2D col)
+    /*private void OnCollisionEnter2D(Collision2D col)
     {
         if(!HasNeighboursFound())CheckColsPositionAndAssignItAsNeighbour(col);
     }
+    */
     private bool HasNeighboursFound()
     {
         if(hasNeighboursFound == false)

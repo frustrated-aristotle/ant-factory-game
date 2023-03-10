@@ -30,12 +30,12 @@ public class ConveyorBelt : MonoBehaviour
       {
          if (neighbour != null)
          {
-            neighbour.GetComponent<MainTileScript>().CheckConveyors();
+            //neighbour.GetComponent<MainTileScript>().CheckConveyors();
          }
 
       }
-      GetComponent<MainTileScript>().CheckConveyors();
-      Upgrade();
+      //GetComponent<MainTileScript>().CheckConveyors();
+      //Upgrade();
    }
 
    private void Upgrade()

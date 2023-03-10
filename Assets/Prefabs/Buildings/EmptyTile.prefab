@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1676463915886968109}
   - component: {fileID: 2756133068235086132}
   - component: {fileID: 2611803755463681003}
+  - component: {fileID: 5649988329647091142}
   m_Layer: 6
   m_Name: EmptyTile
   m_TagString: Connectable
@@ -100,12 +101,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isItABuilding: 0
+  isItFertile: 0
   hasNeighboursFound: 0
   emptyTile: {fileID: 820448186563660921}
+  path: []
   gameState: {fileID: 11400000, guid: 2f36e77f4b7dc664081473818f61545d, type: 2}
   roadScriptableObject: {fileID: 11400000, guid: c098300e96e63b04da3505b3278552bf, type: 2}
   neighbours: []
-  adjacentRoads: []
+  adjacentConveyorBelts: []
 --- !u!61 &2756133068235086132
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -153,3 +156,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!114 &5649988329647091142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 820448186563660921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 035ec65ccf8ac6a4ca569b733661b0bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
