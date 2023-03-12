@@ -29,6 +29,11 @@ public class UIManager : MonoBehaviour
         {
             buildableUI.SetActive(false);
         }      
+        //Rotating Buildable
+        else if (Input.GetKeyDown(KeyCode.R) && buildableUI.activeSelf)
+        {
+            gameStateSo.Rotate();
+        }
         else if (Input.GetKeyDown(KeyCode.C) && !contractUI.activeSelf)
         {
             contractUI.SetActive(true);

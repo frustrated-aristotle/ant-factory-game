@@ -5,43 +5,65 @@ public class NeighbourFinder : MonoBehaviour
 {
     private Vector2 orgPos, currentOriginPos, currentDirectionPos;
     private Vector2 x = new Vector2(0.6f, 0);
-    private Vector2 y = new Vector2(0, 0.5f);
+    private Vector2 y = new Vector2(0, 0.6f);
+    
     private int neighbourCounter;
+
+    public List<bool> hasAdjacent = new List<bool>()
+    {
+        false,
+        false,
+        false,
+        false
+    };
+
     private MainTileScript mainTileScript;
+    
     private List<GameObject> neighbours = new List<GameObject>();
+    //private List<ConveyorBelt> adjacentConveyors = new List<ConveyorBelt>();
+
     private void Start()
     {
         mainTileScript = this.GetComponent<MainTileScript>();
         neighbours = mainTileScript.neighbours;
+        //adjacentConveyors = mainTileScript.adjacentConveyorBelts;
         orgPos = transform.position;
-        for (neighbourCounter = 0; neighbourCounter < 4; neighbourCounter++)
-        {
-            Debug.Log(neighbourCounter);
-            RaySender();
-        }
+        FindNeighbours();
     }
 
+    public void FindNeighbours()
+    {
+      
+        neighbourCounter = 0;
+        for (neighbourCounter = 0; neighbourCounter < 4; neighbourCounter++)
+        {
+            RaySender();
+        }
+
+        if (neighbours.Count == 4 && CompareTag("Conveyor") && GetComponent<UpgradeHandler>())
+        {
+            GetComponent<UpgradeHandler>().Upgrade(this);
+        }
+    }
     private void RaySender()
     {
         TargetChanger();
-        Vector2 pos = transform.position;
-        pos.y += 0.5f;
-        //GetComponent<BoxCollider2D>().enabled = false;
+
+        //Sending Ray
         RaycastHit2D hit = Physics2D.Raycast(currentOriginPos, transform.TransformDirection(currentDirectionPos), 10f);
-        //GetComponent<BoxCollider2D>().enabled = true;
+        //Checking whether or not hit is valid.
         if (hit)
         {
-            Debug.Log("This: " + this + " and hit: " + hit.collider.name);
             //Check whether or not neighbours list contains this element.
-            bool doesNeighboursContainsHit = neighbours.Contains(hit.collider.gameObject);
-            if (!doesNeighboursContainsHit)
+            if (!DoesNeighbourContainsHit(hit))
             {
                 neighbours.Add(hit.collider.gameObject);
+                CheckConveyors();
             }
-            //If it does not, than add it.
         }
     }
 
+    
     private void TargetChanger()
     {
         switch (neighbourCounter)
@@ -65,4 +87,22 @@ public class NeighbourFinder : MonoBehaviour
         }
     }
 
+    private bool DoesNeighbourContainsHit(RaycastHit2D hit)
+    {
+        bool doesNeighboursContainsHit = neighbours.Contains(hit.collider.gameObject);
+        return doesNeighboursContainsHit;
+    }
+
+    private void CheckConveyors()
+    {
+        foreach (GameObject neighbour in neighbours)
+        {
+            if (neighbour.CompareTag("Conveyor"))
+            {
+                int indexOfConveyor = neighbours.IndexOf(neighbour);
+                hasAdjacent[indexOfConveyor] = true;
+                //adjacentConveyors.Add(neighbour.GetComponent<ConveyorBelt >());
+            }
+        }
+    }
 }

@@ -81,10 +81,10 @@ public class ConveyorBelt : MonoBehaviour
       
       MainTileScript upgradedConveyorMainTileScript = upgradedConveyor.GetComponent<MainTileScript>();
       
-      upgradedConveyorMainTileScript.adjacentConveyorBelts = GetComponent<MainTileScript>().adjacentConveyorBelts;
+      // upgradedConveyorMainTileScript.adjacentConveyorBelts = GetComponent<MainTileScript>().adjacentConveyorBelts;
       upgradedConveyorMainTileScript.neighbours = neighbours;
       
-      upgradedConveyorMainTileScript.CheckConveyors();
+      //upgradedConveyorMainTileScript.CheckConveyors();
       
       GameObject upgradedConveyorI = Instantiate(upgradedConveyor, pos, quaternion.identity);
       

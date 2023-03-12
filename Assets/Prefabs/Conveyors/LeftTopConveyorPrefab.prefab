@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 4875682122467057845}
   - component: {fileID: 4875682122467057844}
   - component: {fileID: 8837192354937975702}
+  - component: {fileID: -756813946178203326}
+  - component: {fileID: 5549226146025893349}
   m_Layer: 9
   m_Name: LeftTopConveyorPrefab
   m_TagString: Conveyor
@@ -172,11 +174,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isItABuilding: 0
   isItFertile: 0
-  hasNeighboursFound: 0
   emptyTile: {fileID: 0}
   path: []
   gameState: {fileID: 11400000, guid: 2f36e77f4b7dc664081473818f61545d, type: 2}
-  roadScriptableObject: {fileID: 11400000, guid: c098300e96e63b04da3505b3278552bf, type: 2}
   neighbours: []
   adjacentConveyorBelts: []
 --- !u!95 &8837192354937975702
@@ -199,3 +199,33 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &-756813946178203326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4875682122467057995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 035ec65ccf8ac6a4ca569b733661b0bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hasAdjacent: 00000000
+--- !u!114 &5549226146025893349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4875682122467057995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddba0d2a042726845835f2d02bbe0c6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: 2
+  leftTop: {fileID: 0}
+  leftBottom: {fileID: 0}
+  rightTop: {fileID: 0}
+  rightBottom: {fileID: 0}

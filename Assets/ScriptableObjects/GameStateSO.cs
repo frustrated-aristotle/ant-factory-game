@@ -32,6 +32,10 @@ public class GameStateSO : ScriptableObject
         currentGameState = state;
     }
 
+    public void Rotate()
+    {
+        toPlace.transform.Rotate(0, 0,-90);
+    }
     public void ChangeTheBuildable(GameObject buildable)
     {
         toPlace = buildable;

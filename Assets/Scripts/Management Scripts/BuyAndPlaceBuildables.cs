@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 [RequireComponent(typeof(RequiredGameManagerScript))]
@@ -9,16 +10,21 @@ public class BuyAndPlaceBuildables : MonoBehaviour
         PlaceIt(tile, prefab);
     }
 
-    public void PlaceIt(GameObject tile, GameObject prefab)
+    private void PlaceIt(GameObject tile, GameObject prefab)
     {
-        //First, instatiate prefab
-        GameObject a = Instantiate(prefab, tile.transform.position, prefab.transform.rotation);
-        a.GetComponent<MainTileScript>().neighbours = tile.GetComponent<MainTileScript>().neighbours;
-        foreach (var neighbour in a.GetComponent<MainTileScript>().neighbours)
-        {
-            int index = neighbour.GetComponent<MainTileScript>().neighbours.IndexOf(tile);
-            neighbour.GetComponent<MainTileScript>().neighbours[index] = a;
-        }
+        GameObject newBuildable = Instantiate(prefab, tile.transform.position, prefab.transform.rotation);
+        newBuildable.GetComponent<MainTileScript>().neighbours = tile.GetComponent<MainTileScript>().neighbours;
+        //We can fire a funciton in neighbourfinder script that is for new conveyors. It will basically do the same job
+        //but after finding neighbours.
         Destroy(tile);
+        foreach (GameObject neighbour in newBuildable.GetComponent<MainTileScript>().neighbours.ToList())
+        {
+            neighbour.GetComponent<MainTileScript>().neighbours.Clear();
+            //neighbour.GetComponent<MainTileScript>().adjacentConveyorBelts.Clear();
+            neighbour.GetComponent<NeighbourFinder>().FindNeighbours();
+            //int index = neighbour.GetComponent<MainTileScript>().neighbours.IndexOf(tile);
+            //neighbour.GetComponent<MainTileScript>().neighbours[index] = newBuildable;
+        }   
+        newBuildable.GetComponent<MainTileScript>().neighbours.Clear();
     }
 }

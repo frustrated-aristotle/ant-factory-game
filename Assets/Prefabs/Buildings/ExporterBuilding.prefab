@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 499284390538297439}
   - component: {fileID: 2441062626076601484}
   - component: {fileID: 3875519563097855987}
+  - component: {fileID: 730425325182782731}
   m_Layer: 7
   m_Name: ExporterBuilding
   m_TagString: Buildings
@@ -171,11 +172,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isItABuilding: 1
   isItFertile: 0
-  hasNeighboursFound: 0
   emptyTile: {fileID: 0}
   path: []
   gameState: {fileID: 11400000, guid: 2f36e77f4b7dc664081473818f61545d, type: 2}
-  roadScriptableObject: {fileID: 11400000, guid: c098300e96e63b04da3505b3278552bf, type: 2}
   neighbours:
   - {fileID: 0}
   - {fileID: 0}
@@ -251,3 +250,16 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &730425325182782731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7325685490495986804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 035ec65ccf8ac6a4ca569b733661b0bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hasAdjacent: 00000000
