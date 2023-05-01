@@ -1,8 +1,8 @@
-﻿using System.Runtime.CompilerServices;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class MouseMovementPlaceHolder : MonoBehaviour
 {
+    //! this gamestateso will be changed to another specialized script file.
     [SerializeField]
     private GameStateSO currentState;
 
@@ -27,8 +27,10 @@ public class MouseMovementPlaceHolder : MonoBehaviour
 
     public void Entered()
     {
-        if(currentState.toPlace.GetComponent<ConveyorBelt>())
-            GetComponent<SpriteRenderer>().sprite = currentState.toPlace.GetComponent<ConveyorBelt>().currentSprite;
+        //We need to check the 
+        if (currentState.toPlace.GetComponent<ConveyorBelt>())
+            GetComponent<SpriteRenderer>().sprite = currentState.GetSprite();
+            //GetComponent<SpriteRenderer>().sprite = currentState.toPlace.GetComponent<ConveyorBelt>().currentSprite;
         currentState.gameObjectMouseOn = this;
         
     }

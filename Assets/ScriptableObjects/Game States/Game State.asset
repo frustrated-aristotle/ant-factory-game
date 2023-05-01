@@ -15,4 +15,17 @@ MonoBehaviour:
   currentGameState: {fileID: 11400000, guid: 1c9c1d01fcc57f242ac2162d5d4e61c3, type: 2}
   purchase: {fileID: 11400000, guid: 1c9c1d01fcc57f242ac2162d5d4e61c3, type: 2}
   bulldoze: {fileID: 11400000, guid: 8f9284f549589844e8010cc10a7a82db, type: 2}
-  toPlace: {fileID: 7784108669578525452, guid: fffd946271093ad47aa0efe495e71b34, type: 3}
+  play: {fileID: 0}
+  toPlace: {fileID: 2592065064504242143, guid: 1e8c5253485c40043a5aafee26b6dd6f, type: 3}
+  gameObjectMouseOn: {fileID: 0}
+  conveyors:
+  - {fileID: 2592065064504242143, guid: 485856553bf3be14e8863ea79d73f802, type: 3}
+  - {fileID: 2592065064504242143, guid: a974938ba3dfa364687f5a23aeb573eb, type: 3}
+  - {fileID: 2592065064504242143, guid: 1e8c5253485c40043a5aafee26b6dd6f, type: 3}
+  - {fileID: 2592065064504242143, guid: 3672a66036472da4fa33b39a87848627, type: 3}
+  currentConveyorIndex: 0
+  conveyorSprites:
+  - {fileID: 21300000, guid: 7f2cabf4e1d3b0b4480d5b6867bf097c, type: 3}
+  - {fileID: 21300000, guid: b6f1b6a806653ce4bbf3c005bdf0ba43, type: 3}
+  - {fileID: 21300000, guid: 1667b404895df3e4288b8c37995f31f2, type: 3}
+  - {fileID: 21300000, guid: 8a4e7ca736f7c9b43b00916a17069a61, type: 3}

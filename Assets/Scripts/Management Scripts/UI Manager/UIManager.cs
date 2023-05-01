@@ -52,7 +52,7 @@ public class UIManager : MonoBehaviour
         //Rotating Buildable
         else if (Input.GetKeyDown(KeyCode.R) && buildableUI.activeSelf)
         {
-            gameStateSo.Rotate();
+            gameStateSo.RotateTheConveyor();
         }
         else if (Input.GetKeyDown(KeyCode.C) && !contractUI.activeSelf)
         {
