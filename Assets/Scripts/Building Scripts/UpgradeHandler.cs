@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class UpgradeHandler : MonoBehaviour
 {
-    [SerializeField] private int level = 1;
+    public int level = 1;
     public GameObject leftTop, leftBottom, rightTop, rightBottom;
     private BuyAndPlaceBuildables buy;
     
@@ -34,33 +34,53 @@ public class UpgradeHandler : MonoBehaviour
         // 0 = LEFT |||| 1 = RIGHT |||| 2 = UP |||| 3 = DOWN
        // bool one = currentTileNeighbourFinder.hasAdjacent[2];
         //bool two = currentTileNeighbourFinder.hasAdjacent[0];
+        
+        
         if (currentTileNeighbourFinder.hasAdjacent[0] && currentTileNeighbourFinder.hasAdjacent[2])
         {
-            UpgradeTile(leftBottom);
+            //Check Direction
+            Debug.Log("leftbottom if");
+            if(CheckConveyorsDirections(currentTileNeighbourFinder.neighbours[0], "LeftRight") && CheckConveyorsDirections(currentTileNeighbourFinder.neighbours[2], "DownUp"))
+                UpgradeTile(leftBottom);
         }
         else if (currentTileNeighbourFinder.hasAdjacent[1] && currentTileNeighbourFinder.hasAdjacent[2])
         {
-            //RIGHT UP
-            UpgradeTile(rightBottom);
+            if(CheckConveyorsDirections(currentTileNeighbourFinder.neighbours[1], "LeftRight") && CheckConveyorsDirections(currentTileNeighbourFinder.neighbours[2], "DownUp"))
+                UpgradeTile(rightBottom);
         }
         else if (currentTileNeighbourFinder.hasAdjacent[0] && currentTileNeighbourFinder.hasAdjacent[3])
         {
-            UpgradeTile(leftTop);
+            if(CheckConveyorsDirections(currentTileNeighbourFinder.neighbours[0], "LeftRight") && CheckConveyorsDirections(currentTileNeighbourFinder.neighbours[3], "DownUp"))
+                UpgradeTile(leftTop);
         }
         else if (currentTileNeighbourFinder.hasAdjacent[1] && currentTileNeighbourFinder.hasAdjacent[3])
         {
-            UpgradeTile(rightTop);
+            Debug.Log("First " + this.name);
+            if(CheckConveyorsDirections(currentTileNeighbourFinder.neighbours[1], "LeftRight") && CheckConveyorsDirections(currentTileNeighbourFinder.neighbours[3], "DownUp"))
+                 UpgradeTile(rightTop);
         }
-        
-    }
-
-    public void ThirdLevelCheck()
-    {
         
     }
 
     private void UpgradeTile(GameObject toUpgrade)
     {
-        buy.Buy(this.gameObject, toUpgrade);
+        buy.Buy(this.gameObject, toUpgrade,level+1);
+    }
+
+    private bool CheckConveyorsDirections(GameObject conveyor, string direction)
+    {
+        ConveyorBelt _conveyor = conveyor.GetComponent<ConveyorBelt>();
+        Debug.Log("Second " + this.name);
+
+        if (conveyor.GetComponent<UpgradeHandler>().level == 1)
+        {
+            Debug.Log("Third " + this.name);
+            _conveyor.CheckWay();
+        }
+        if (_conveyor.way == direction)
+        {
+            return true;
+        }
+        return false;
     }
 }

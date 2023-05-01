@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEngine;
@@ -17,6 +19,8 @@ public class ContractManager : MonoBehaviour
     private AfterContractDelivery afterContractDelivery;
     private RandomizeContractValues randomizeContractValues;
     public  ContractScriptableObject currentContract, previousContract;
+
+    private List<ExportersProduce> producers = new List<ExportersProduce>();
 
     private void Awake()
     {
@@ -97,5 +101,10 @@ public class ContractManager : MonoBehaviour
         currentContract = newContract;
         HasContract = true;
         remainedTime = currentContract.currentDeliverTime;
+        producers = GameObject.FindObjectsOfType<ExportersProduce>().ToList();
+        foreach (ExportersProduce producer in producers)
+        {
+            producer.currentContract = currentContract;
+        }
     }
 }

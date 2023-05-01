@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using Building_Scripts;
 using UnityEngine;
 
+//! If one of the adjacent conveyor's last point collides with other ones, higher level's points must be changed.
 public class NeighbourFinder : MonoBehaviour
 {
     private Vector2 orgPos, currentOriginPos, currentDirectionPos;
@@ -19,7 +21,7 @@ public class NeighbourFinder : MonoBehaviour
 
     private MainTileScript mainTileScript;
     
-    private List<GameObject> neighbours = new List<GameObject>();
+    public List<GameObject> neighbours = new List<GameObject>();
     //private List<ConveyorBelt> adjacentConveyors = new List<ConveyorBelt>();
 
     private void Start()
@@ -43,6 +45,12 @@ public class NeighbourFinder : MonoBehaviour
         if (neighbours.Count == 4 && CompareTag("Conveyor") && GetComponent<UpgradeHandler>())
         {
             GetComponent<UpgradeHandler>().Upgrade(this);
+//            Debug.Log(this.name + " Rotation : " + GetComponent<Transform>().rotation.z);
+        }
+
+        if (hasAdjacent[1] && GetComponent<MainBuildingScript>())
+        {
+            GetComponent<Storage>().startingConveyor = neighbours[1].GetComponent<ConveyorBelt>();
         }
     }
     private void RaySender()
@@ -97,7 +105,7 @@ public class NeighbourFinder : MonoBehaviour
     {
         foreach (GameObject neighbour in neighbours)
         {
-            if (neighbour.CompareTag("Conveyor"))
+            if (neighbour.CompareTag("Conveyor") && neighbour.GetComponent<UpgradeHandler>().level == 1)
             {
                 int indexOfConveyor = neighbours.IndexOf(neighbour);
                 hasAdjacent[indexOfConveyor] = true;

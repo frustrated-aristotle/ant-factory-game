@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System;
+using TMPro;
 using UnityEngine;
 
 public class DisplayContract : MonoBehaviour
@@ -8,7 +9,13 @@ public class DisplayContract : MonoBehaviour
     [SerializeField] private TextMeshProUGUI[]  money = new TextMeshProUGUI[3];
     [SerializeField] private TextMeshProUGUI[]  deliverTime = new TextMeshProUGUI[3];
     [SerializeField] private TextMeshProUGUI[]  loseAMount = new TextMeshProUGUI[3];
-   
+
+    private ContractScriptableObject currentContract;
+
+    private void Start()
+    {
+    }
+
     public void DisplayAllContracts()
     {
         int i = 0;
@@ -20,5 +27,10 @@ public class DisplayContract : MonoBehaviour
             loseAMount[i].text = contract.currentLose.ToString();
             i++;
         }
+        currentContract = GameObject.FindObjectOfType<ContractManager>().currentContract;
+        TextMeshProUGUI remainedGoodsToDeliverTxt = GameObject.Find("RemainedGoodsToDeliverText").GetComponent<TextMeshProUGUI>();
+        int remainedGoodsToDeliver = (int)currentContract.currentOrderedGoods - (int)currentContract.deliveredGoods;
+        Debug.Log(currentContract.deliveredGoods);
+        remainedGoodsToDeliverTxt.text = (remainedGoodsToDeliver).ToString();
     }
 }

@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 8085953304375308324}
   - component: {fileID: 8217972221828096512}
   - component: {fileID: 8109142934328283428}
+  - component: {fileID: 1918203390503246552}
   m_Layer: 7
   m_Name: ExporterBuildingPrefab
   m_TagString: Buildings
@@ -81,7 +82,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -1109820663, guid: c147529195b78fa44b05479589067c84, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -176,7 +177,6 @@ MonoBehaviour:
   path: []
   gameState: {fileID: 11400000, guid: 2f36e77f4b7dc664081473818f61545d, type: 2}
   neighbours: []
-  adjacentConveyorBelts: []
 --- !u!114 &5998958534796147144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -245,6 +245,7 @@ MonoBehaviour:
   produceAmount: 10
   consumeAmount: 5
   factoryResourcesSo: {fileID: 11400000, guid: 88637bca9ddaac0489b1bd1a009263a7, type: 2}
+  currentContract: {fileID: 0}
   remainedGoodsToDeliverTXT: {fileID: 0}
 --- !u!114 &8109142934328283428
 MonoBehaviour:
@@ -259,3 +260,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hasAdjacent: 00000000
+  neighbours: []
+--- !u!114 &1918203390503246552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2024584509411838262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7420d09161834602a813daa022f48ce8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentState: {fileID: 0}
+  orgSprite: {fileID: 0}

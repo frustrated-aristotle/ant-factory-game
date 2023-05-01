@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
@@ -5,10 +6,14 @@ using UnityEngine;
 public class ConveyorBelt : MonoBehaviour
 {
    public bool hasRight, hasLeft, hasDown, hasUp;
-   
+   public string way;
    public  Vector3 instantiationPos;
    public  Vector3 targetPos;
-   private Vector3 pos; 
+   private Vector3 pos;
+   
+   public Sprite spriteWithArrow;
+   public Sprite currentSprite;
+   public List<Sprite> placeHolderSprites = new List<Sprite>();
    
    public  GameObject rightBottom, leftBottom, rightUp, leftUp;
 
@@ -17,96 +22,48 @@ public class ConveyorBelt : MonoBehaviour
    private BuyAndPlaceBuildables buyAndPlaceBuildables;
    private void Awake()
    {
-      //instantiationPos = transform.GetChild(0).GetComponent<Transform>().position;
-      //targetPos = transform.GetChild(1).GetComponent<Transform>().position;
-   }
+      instantiationPos = transform.GetChild(0).GetComponent<Transform>().position;
+      targetPos = transform.GetChild(1).GetComponent<Transform>().position;
+      currentSprite = spriteWithArrow;
+      }
 
    private void Start()
    {
+      GetNeighbours();
+      buyAndPlaceBuildables = GameObject.FindObjectOfType<BuyAndPlaceBuildables>();
+      CheckWay();
+   }
+
+   private void GetNeighbours()
+   {
       MainTileScript mainTileScript = GetComponent<MainTileScript>();
       neighbours = mainTileScript.neighbours;
-      buyAndPlaceBuildables = GameObject.FindObjectOfType<BuyAndPlaceBuildables>();
-      foreach (GameObject neighbour in neighbours)
-      {
-         if (neighbour != null)
-         {
-            //neighbour.GetComponent<MainTileScript>().CheckConveyors();
-         }
-
-      }
-      //GetComponent<MainTileScript>().CheckConveyors();
-      //Upgrade();
    }
-
-   private void Upgrade()
+   private void OnMouseOver()
    {
-      //there must be at least 4 condition for 4 case.
-      if (hasRight && hasDown)
+      if (Input.GetMouseButtonDown(1))
       {
-         ChangeConveyorBelt(rightUp);
-         //RightUp
+         buyAndPlaceBuildables.PlaceNormalTile(this.gameObject);
       }
-      else if (hasRight && hasUp)
-      {
-         Debug.Log(this);
-         ChangeConveyorBelt(rightBottom);
-         //RightBottom
-      }
-      else if (hasLeft && hasDown)
-      {
-         ChangeConveyorBelt(leftUp);
-         //LeftUp
-      }
-      else if (hasLeft && hasUp)
-      {
-         ChangeConveyorBelt(leftBottom);
-         //LeftDown
-      }
-
    }
-
-   private void ChangeConveyorBelt(GameObject conveyorGameObject)
+   public void CheckWay()
    {
-      pos = transform.position;
-      //buyAndPlaceBuildables.Buy(this.gameObject, conveyorGameObject);
-      
-      GiveNeighbours(conveyorGameObject);
-      Destroy(this.gameObject);
-   }
-
-   private void GiveNeighbours(GameObject conveyorGameObject)
-   {
-
-      GameObject upgradedConveyor = conveyorGameObject;
-      
-      MainTileScript upgradedConveyorMainTileScript = upgradedConveyor.GetComponent<MainTileScript>();
-      
-      // upgradedConveyorMainTileScript.adjacentConveyorBelts = GetComponent<MainTileScript>().adjacentConveyorBelts;
-      upgradedConveyorMainTileScript.neighbours = neighbours;
-      
-      //upgradedConveyorMainTileScript.CheckConveyors();
-      
-      GameObject upgradedConveyorI = Instantiate(upgradedConveyor, pos, quaternion.identity);
-      
-      
-      Debug.Log("HasLeft: " + upgradedConveyorI.GetComponent<ConveyorBelt>().hasLeft);
-      //upgradedConveyorMainTileScript.CheckConveyors();
-      Debug.Log("HasLeftII: " + upgradedConveyorI.GetComponent<ConveyorBelt>().hasLeft);
-      
-      ReplaceItselfWithPriorForNeighbours(upgradedConveyorI);
-
-   }
-
-   private void ReplaceItselfWithPriorForNeighbours(GameObject upgradedConveyor)
-   {
-      //In upgrade phase, prior tile will be destroyed. 
-      //By mean of that, neighbours of prior tile will have a null referenced neighbour in place of this prior tile.
-      //We need to find the index of our prior tile in their neighbours. And replace it with our new upgraded tile. 
-
-      foreach (GameObject neighbour in neighbours)
+      float z = transform.rotation.z;
+      if (z < 0)
       {
-         int indexOfNeighboursArray = neighbour.GetComponent<MainTileScript>().neighbours.IndexOf(this.gameObject);
-         neighbour.GetComponent<MainTileScript>().neighbours[indexOfNeighboursArray] = upgradedConveyor;
+         way = "DownUp";
+      }
+      else if (z == 1 )
+      {
+         way = "LeftRight";
+      }
+      else if (z > 0 && z < 1 )
+      {
+         way = "DownUp";
+      }
+      else
+      {
+         way = "LeftRight";
       }
    }
 }

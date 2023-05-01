@@ -15,7 +15,7 @@ public class PackageMovementHandler : MonoBehaviour
     private void Start()
     {
         targetPos = firstConveyor.GetComponent<ConveyorBelt>().targetPos;
-        }
+    }
 
     private void FixedUpdate()
     {

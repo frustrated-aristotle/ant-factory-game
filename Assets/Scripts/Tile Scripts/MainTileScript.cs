@@ -2,6 +2,7 @@
  using Building_Scripts;
  using UnityEngine;
 
+ [RequireComponent(typeof(MouseMovementPlaceHolder))]
  public class MainTileScript : MonoBehaviour
 {
     public  bool isItABuilding;
@@ -13,8 +14,7 @@
     private BuyAndPlaceBuildables buyAndPlaceBuildables;
     private BuildingUIScript buildingUI;
     
-    [SerializeField]
-    private GameStateSO gameState;
+    public GameStateSO gameState;
 
     //0 = right 1 = left 2= up 3=bot
     public List<GameObject> neighbours = new List<GameObject>();
@@ -34,17 +34,16 @@
         {
             if (gameState.toPlace != null && !gameState.toPlace.GetComponent<MainBuildingScript>())
             {
-                buyAndPlaceBuildables.Buy(this.gameObject, gameState.toPlace);
+                buyAndPlaceBuildables.Buy(this.gameObject, gameState.toPlace, 1);
             }
             else if (gameState.toPlace != null && gameState.toPlace.GetComponent<MainBuildingScript>() && isItFertile) 
             {
-                buyAndPlaceBuildables.Buy(this.gameObject, gameState.toPlace);
+                buyAndPlaceBuildables.Buy(this.gameObject, gameState.toPlace, 1);
             }
         }
         else if (gameState.currentGameState == gameState.bulldoze && GetComponent<ConveyorBelt>())
         {
-            buyAndPlaceBuildables.Buy(gameObject, emptyTile);
-            Debug.Log("Its else if and it seems not suitable");
+            buyAndPlaceBuildables.Buy(gameObject, emptyTile, 1);
         }
     }
     #endregion

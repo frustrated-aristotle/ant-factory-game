@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -26,7 +27,6 @@ public class Storage : MonoBehaviour
     {
         input += amount;
     }
-    
 
     #endregion
     
@@ -43,6 +43,7 @@ public class Storage : MonoBehaviour
                 {
                     good.GetComponent<PackageMovementHandler>().firstConveyor = startingConveyor.GameObject();
                     GameObject a = Instantiate(good, posToInstantiate, quaternion.identity);
+                    a.transform.parent = GameObject.Find("Goods").transform;
                 }
             }
         }
