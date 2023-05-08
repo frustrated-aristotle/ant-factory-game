@@ -42,15 +42,14 @@ public class NeighbourFinder : MonoBehaviour
             RaySender();
         }
 
-        if (neighbours.Count == 4 && CompareTag("Conveyor") && GetComponent<UpgradeHandler>())
+        if (neighbours.Count == 4 && CompareTag("Conveyor") && GetComponent<UpgradeHandler>() && GetComponent<UpgradeHandler>().level == 1)
         {
             GetComponent<UpgradeHandler>().Upgrade(this);
 //            Debug.Log(this.name + " Rotation : " + GetComponent<Transform>().rotation.z);
         }
-
-        if (hasAdjacent[1] && GetComponent<MainBuildingScript>())
+        else if (hasAdjacent[0] && GetComponent<MainBuildingScript>())
         {
-            GetComponent<Storage>().startingConveyor = neighbours[1].GetComponent<ConveyorBelt>();
+            GetComponent<Storage>().startingConveyor = neighbours[0].GetComponent<ConveyorBelt>();
         }
     }
     private void RaySender()
@@ -63,7 +62,7 @@ public class NeighbourFinder : MonoBehaviour
         if (hit)
         {
             //Check whether or not neighbours list contains this element.
-            if (!DoesNeighbourContainsHit(hit))
+            if (!DoesNeighbourContainsHit(hit) && !hit.transform.gameObject.CompareTag("Good"))
             {
                 neighbours.Add(hit.collider.gameObject);
                 CheckConveyors();
@@ -105,11 +104,21 @@ public class NeighbourFinder : MonoBehaviour
     {
         foreach (GameObject neighbour in neighbours)
         {
-            if (neighbour.CompareTag("Conveyor") && neighbour.GetComponent<UpgradeHandler>().level == 1)
+            if (neighbour.CompareTag("Conveyor"))
             {
-                int indexOfConveyor = neighbours.IndexOf(neighbour);
-                hasAdjacent[indexOfConveyor] = true;
-                //adjacentConveyors.Add(neighbour.GetComponent<ConveyorBelt >());
+                bool level1 = neighbour.GetComponent<UpgradeHandler>().level == 1;
+                bool level2 = neighbour.GetComponent<UpgradeHandler>().level == 2;    
+                if (level1  || level2)
+                {
+                    int indexOfConveyor = neighbours.IndexOf(neighbour);
+                    hasAdjacent[indexOfConveyor] = true;
+                    //adjacentConveyors.Add(neighbour.GetComponent<ConveyorBelt >());
+                }
+            }
+            else if (neighbour.CompareTag("Buildings"))
+            {
+                int indexOfBuilding = neighbours.IndexOf(neighbour);
+                hasAdjacent[indexOfBuilding] = true;
             }
         }
     }

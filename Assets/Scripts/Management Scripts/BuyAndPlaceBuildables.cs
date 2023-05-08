@@ -1,23 +1,23 @@
-using System;
 using System.Linq;
-using Unity.Mathematics;
 using UnityEngine;
 
 [RequireComponent(typeof(RequiredGameManagerScript))]
 public class BuyAndPlaceBuildables : MonoBehaviour
 {
-    [SerializeField]private GameStateSO gameStateSo;
     private int i = 0;
+    private GameObject prior;
 
-    [SerializeField] private GameObject defaultTile;
+    public GameObject defaultTile;
     public void Buy(GameObject tile, GameObject prefab, int level)
     {
+        prior = tile;
         //We will place everything if it is buyable but vehicle. In case of buying a transporter, we first select both home and destiantion of the transporter.
         PlaceIt(tile, prefab, level);
     }
 
     private void PlaceIt(GameObject tile, GameObject prefab, int level)
     {
+        
         GameObject newBuildable = Instantiate(prefab, tile.transform.position, prefab.transform.rotation);
         newBuildable.name = i.ToString();
         i++;
@@ -34,6 +34,13 @@ public class BuyAndPlaceBuildables : MonoBehaviour
         {
             newBuildable.GetComponent<UpgradeHandler>().level = level;
         }
+
+        if (newBuildable.GetComponent<ConveyorBelt>() && tile.GetComponent<ConveyorBelt>())
+        {
+                newBuildable.GetComponent<ConveyorBelt>().inheretedDirection = tile.GetComponent<ConveyorBelt>().direction;
+            newBuildable.GetComponent<ConveyorBelt>().spriteWithArrow =
+                tile.GetComponent<ConveyorBelt>().spriteWithArrow;
+        }
         //We can fire a funciton in neighbourfinder script that is for new conveyors. It will basically do the same job
         //but after finding neighbours.
         Destroy(tile);
@@ -46,15 +53,5 @@ public class BuyAndPlaceBuildables : MonoBehaviour
             //neighbour.GetComponent<MainTileScript>().neighbours[index] = newBuildable;
         }   
         newBuildable.GetComponent<MainTileScript>().neighbours.Clear();
-    }
-
-    public void PlaceNormalTile(GameObject gameObjectToDestroy)
-    {
-        Vector3 position = gameObjectToDestroy.transform.position;
-        
-        Destroy(gameObjectToDestroy);
-        GameObject tileToPlace = defaultTile;
-        GameObject a = Instantiate(tileToPlace, position, quaternion.identity);
-        a.transform.parent = GameObject.Find("ReplacedTiles").transform;
     }
 }

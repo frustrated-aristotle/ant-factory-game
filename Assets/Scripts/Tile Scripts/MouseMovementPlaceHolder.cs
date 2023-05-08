@@ -1,25 +1,26 @@
 ﻿using UnityEngine;
-
+using static GameStateManager;
 public class MouseMovementPlaceHolder : MonoBehaviour
 {
     //! this gamestateso will be changed to another specialized script file.
-    [SerializeField]
-    private GameStateSO currentState;
 
     [SerializeField]private Sprite orgSprite;
     private TileMouseEnterExitHandler tileMouseEnterExitHandler;
+    
+    //States
+    private GameStateManager stateManager;
     private void Start()
     {
+        stateManager = GameObject.FindObjectOfType<GameStateManager>();
         tileMouseEnterExitHandler = GameObject.FindObjectOfType<TileMouseEnterExitHandler>();
-        currentState = GetComponent<MainTileScript>().gameState;
-        orgSprite = GetComponent<SpriteRenderer>().sprite;
+       // orgSprite = GetComponent<SpriteRenderer>().sprite;
 
     }
     //! WE CAN SHOW THEIR SPRITE WITH ARROWS WHEN THE STATE IS PURCHASE.
 
     private void OnMouseEnter()
     {
-        if (currentState.IsTheStatePurchase())
+        if (stateManager.AreStatesTheSame(States.PURCHASE))
         {
             Entered();
         }
@@ -28,10 +29,10 @@ public class MouseMovementPlaceHolder : MonoBehaviour
     public void Entered()
     {
         //We need to check the 
-        if (currentState.toPlace.GetComponent<ConveyorBelt>())
-            GetComponent<SpriteRenderer>().sprite = currentState.GetSprite();
+        if (stateManager.BuildableToPlace.GetComponent<ConveyorBelt>())
+            GetComponent<SpriteRenderer>().sprite = stateManager.GetSprite();
             //GetComponent<SpriteRenderer>().sprite = currentState.toPlace.GetComponent<ConveyorBelt>().currentSprite;
-        currentState.gameObjectMouseOn = this;
+        stateManager.gameObjectThatMouseIsOver = this.gameObject;
         
     }
 

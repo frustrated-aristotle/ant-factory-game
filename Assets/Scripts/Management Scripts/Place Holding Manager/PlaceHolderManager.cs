@@ -1,20 +1,22 @@
-using System;
-using Unity.Mathematics;
 using UnityEngine;
+using static GameStateManager.States;
 
 public class PlaceHolderManager : MonoBehaviour
 {
     private Camera cam;
     [SerializeField]
-    private GameStateSO state;
+
+    private GameStateManager stateManager;
     private void Start()
     {
+        stateManager = GameObject.FindObjectOfType<GameStateManager>();
         cam = GameObject.Find("Camera").GetComponent<Camera>();
+        
     }
 
     void Update()
     {
-        if (state.IsTheStatePurchase())
+        if (stateManager.AreStatesTheSame(PURCHASE))
         {
             SendRay();
         }
@@ -26,7 +28,7 @@ public class PlaceHolderManager : MonoBehaviour
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
         RaycastHit2D hit = Physics2D.GetRayIntersection(ray, Mathf.Infinity);
 
-        if(hit.transform.gameObject.CompareTag("Connectable")) 
+        if (hit && hit.transform.gameObject.CompareTag("Connectable"))
         {
             ShowPlaceHolder(hit);        
         }
@@ -34,7 +36,6 @@ public class PlaceHolderManager : MonoBehaviour
 
     private void ShowPlaceHolder(RaycastHit2D hit)
     {
-        Debug.Log(state.currentConveyorIndex);
-        hit.transform.GetComponent<SpriteRenderer>().sprite = state.GetSprite();
+        hit.transform.GetComponent<SpriteRenderer>().sprite = stateManager.GetSprite();
     }
 }

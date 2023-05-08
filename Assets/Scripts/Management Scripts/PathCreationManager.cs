@@ -5,7 +5,6 @@ public class PathCreationManager : MonoBehaviour
 {
     private String state = "Path Creation";
     public MainTileScript home ,target;
-    public GameStateSO currentGameState;
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.P))

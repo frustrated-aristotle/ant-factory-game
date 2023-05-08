@@ -1,6 +1,7 @@
  using System.Collections.Generic;
  using Building_Scripts;
  using UnityEngine;
+ using static GameStateManager;
 
  [RequireComponent(typeof(MouseMovementPlaceHolder))]
  public class MainTileScript : MonoBehaviour
@@ -14,8 +15,9 @@
     private BuyAndPlaceBuildables buyAndPlaceBuildables;
     private BuildingUIScript buildingUI;
     
-    public GameStateSO gameState;
-
+    //States
+    private GameStateManager stateManager;
+    
     //0 = right 1 = left 2= up 3=bot
     public List<GameObject> neighbours = new List<GameObject>();
     //public List<ConveyorBelt> adjacentConveyorBelts = new List<ConveyorBelt>();
@@ -23,25 +25,27 @@
   //public List<GameObject> adjacentRoads = new List<GameObject>();
     private void Start()
     {
+        stateManager = GameObject.FindObjectOfType<GameStateManager>();
         buyAndPlaceBuildables = GameObject.FindObjectOfType<BuyAndPlaceBuildables>();
         buildingUI = GameObject.FindObjectOfType<BuildingUIScript>();
     }
     #region  Purchase
     private void OnMouseDown()
     {
+        GameObject buildableToPlace = stateManager.BuildableToPlace;
+        if (stateManager.AreStatesTheSame(States.PURCHASE) && !buildingUI.CanMouseClick())
         //! If the game state is buying, we can do proceed.
-        if(gameState.IsTheStatePurchase() && !buildingUI.CanMouseClick())
         {
-            if (gameState.toPlace != null && !gameState.toPlace.GetComponent<MainBuildingScript>())
+            if (buildableToPlace != null && !buildableToPlace.GetComponent<MainBuildingScript>())
             {
-                buyAndPlaceBuildables.Buy(this.gameObject, gameState.toPlace, 1);
+                buyAndPlaceBuildables.Buy(this.gameObject, buildableToPlace, 1);
             }
-            else if (gameState.toPlace != null && gameState.toPlace.GetComponent<MainBuildingScript>() && isItFertile) 
+            else if (buildableToPlace != null && buildableToPlace.GetComponent<MainBuildingScript>() && isItFertile) 
             {
-                buyAndPlaceBuildables.Buy(this.gameObject, gameState.toPlace, 1);
+                buyAndPlaceBuildables.Buy(this.gameObject, buildableToPlace, 1);
             }
         }
-        else if (gameState.currentGameState == gameState.bulldoze && GetComponent<ConveyorBelt>())
+        else if (stateManager.AreStatesTheSame(States.BULLDOZE) && GetComponent<ConveyorBelt>())
         {
             buyAndPlaceBuildables.Buy(gameObject, emptyTile, 1);
         }
