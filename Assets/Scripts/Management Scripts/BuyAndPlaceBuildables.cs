@@ -37,9 +37,11 @@ public class BuyAndPlaceBuildables : MonoBehaviour
 
         if (newBuildable.GetComponent<ConveyorBelt>() && tile.GetComponent<ConveyorBelt>())
         {
+            if (newBuildable.GetComponent<UpgradeHandler>().level == 2)
+            {
                 newBuildable.GetComponent<ConveyorBelt>().inheretedDirection = tile.GetComponent<ConveyorBelt>().direction;
-            newBuildable.GetComponent<ConveyorBelt>().spriteWithArrow =
-                tile.GetComponent<ConveyorBelt>().spriteWithArrow;
+            }
+            newBuildable.GetComponent<ConveyorBelt>().spriteWithArrow = tile.GetComponent<ConveyorBelt>().spriteWithArrow;
         }
         //We can fire a funciton in neighbourfinder script that is for new conveyors. It will basically do the same job
         //but after finding neighbours.

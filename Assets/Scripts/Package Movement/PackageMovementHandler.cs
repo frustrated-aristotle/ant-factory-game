@@ -14,9 +14,7 @@ public class PackageMovementHandler : MonoBehaviour
     // Update is called once per frame
     private void Start()
     {
-        Debug.Log("firstconveyor: " + firstConveyor);
         targetPos = firstConveyor.GetComponent<ConveyorBelt>().targetPos;
-        Debug.Log("targetPos: " + targetPos);
     }
     
 
@@ -33,7 +31,6 @@ public class PackageMovementHandler : MonoBehaviour
         }
         else if(col.CompareTag("Buildings"))
         {
-            Debug.Log("destroyworks");
             col.GetComponent<Storage>().TakeInput(carriedAmount);
             Destroy(this.gameObject);
         }

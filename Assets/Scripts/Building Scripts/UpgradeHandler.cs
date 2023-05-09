@@ -20,7 +20,10 @@ public class UpgradeHandler : MonoBehaviour
         neighbours = currentTile.neighbours;
         currentTileNeighbourFinder = currentTile;
         buy = GameObject.FindObjectOfType<BuyAndPlaceBuildables>();
-        SecondLevelCheck();
+        if (!GetComponent<MainBuildingScript>())
+        {
+            SecondLevelCheck();
+        }
     }
 
     public void SecondLevelCheck()
@@ -97,12 +100,16 @@ public class UpgradeHandler : MonoBehaviour
         }
         else if (adj1 && adj3)
         {
+            Debug.Log("13");
             if (AreLevelsTwo(neighbours[1], neighbours[3]))
             {
+                Debug.Log("132");
+
                 UpgradeTileIfDirectionsAreOkay(neighbours[1], neighbours[3], Direction.LEFT, Direction.DOWN , Direction.RIGHT, Direction.UP, conveyors.lD, conveyors.uR,tempNeighbours);
             }
             else
             {
+                Debug.Log("133");
                 UpgradeTileIfDirectionsAreOkay(neighbours[1], neighbours[3], Direction.LEFT, Direction.DOWN , Direction.RIGHT, Direction.UP, conveyors.lD, conveyors.uR);
             }
         }

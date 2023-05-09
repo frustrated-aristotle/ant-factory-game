@@ -11,6 +11,10 @@ public class AfterContractDelivery : MonoBehaviour
 
     public void CouldNotDeliveredSuccessfully(ContractScriptableObject contract)
     {
-        factoryResourcesSo.money -= contract.currentLose;
+        //He will pay lose money but also he must gain some money because has given some goods. 
+        //We will find the money with this formula
+
+        float moneyToAdd = contract.currentGain / contract.currentOrderedGoods * contract.deliveredGoods;
+        factoryResourcesSo.money -= contract.currentLose + (int)moneyToAdd;
     }
 }

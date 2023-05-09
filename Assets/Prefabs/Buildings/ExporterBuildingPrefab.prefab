@@ -20,6 +20,8 @@ GameObject:
   - component: {fileID: 8217972221828096512}
   - component: {fileID: 8109142934328283428}
   - component: {fileID: 1918203390503246552}
+  - component: {fileID: -7153546629951854587}
+  - component: {fileID: 6986606360528068563}
   m_Layer: 7
   m_Name: ExporterBuildingPrefab
   m_TagString: Buildings
@@ -107,7 +109,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.12337363, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -118,7 +120,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.75325274, y: 1}
   m_EdgeRadius: 0
 --- !u!50 &7193720669886273741
 Rigidbody2D:
@@ -175,7 +177,6 @@ MonoBehaviour:
   isItFertile: 0
   emptyTile: {fileID: 0}
   path: []
-  gameState: {fileID: 11400000, guid: 2f36e77f4b7dc664081473818f61545d, type: 2}
   neighbours: []
 --- !u!114 &5998958534796147144
 MonoBehaviour:
@@ -242,8 +243,8 @@ MonoBehaviour:
   roadRight: {fileID: 0}
   roadBottom: {fileID: 0}
   roadTop: {fileID: 0}
-  produceAmount: 10
-  consumeAmount: 5
+  produceAmount: 1
+  consumeAmount: 1
   factoryResourcesSo: {fileID: 11400000, guid: 88637bca9ddaac0489b1bd1a009263a7, type: 2}
   currentContract: {fileID: 0}
   remainedGoodsToDeliverTXT: {fileID: 0}
@@ -273,5 +274,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7420d09161834602a813daa022f48ce8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentState: {fileID: 0}
   orgSprite: {fileID: 0}
+--- !u!114 &-7153546629951854587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2024584509411838262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddba0d2a042726845835f2d02bbe0c6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: 2
+--- !u!114 &6986606360528068563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2024584509411838262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f977440880a2c24ea33f5ad07002a5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  direction: 0
+  inheretedDirection: 0
+  instantiationPos: {x: 0, y: 0, z: 0}
+  targetPos: {x: 0, y: 0, z: 0}
+  spriteWithArrow: {fileID: 0}
+  currentSprite: {fileID: 0}
+  placeHolderSprites: []
+  animatorController: {fileID: 0}

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Building_Scripts;
 using UnityEngine;
 
 public class ConveyorBelt : MonoBehaviour
@@ -34,8 +35,12 @@ public class ConveyorBelt : MonoBehaviour
    private void Awake()
    {
       buyAndPlaceBuildables = GameObject.FindObjectOfType<BuyAndPlaceBuildables>();
-      instantiationPos = transform.GetChild(0).GetComponent<Transform>().position;
-      targetPos = transform.GetChild(1).GetComponent<Transform>().position;
+
+      if (!GetComponent<MainBuildingScript>())
+      {
+         instantiationPos = transform.GetChild(0).GetComponent<Transform>().position;
+         targetPos = transform.GetChild(1).GetComponent<Transform>().position;
+      }
       //currentSprite = spriteWithArrow;
       anim = GetComponent<Animator>();
       if (GetComponent<UpgradeHandler>().level == 2)

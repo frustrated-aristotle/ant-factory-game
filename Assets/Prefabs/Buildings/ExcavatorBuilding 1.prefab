@@ -12,15 +12,16 @@ GameObject:
   - component: {fileID: 9163511096970901615}
   - component: {fileID: 6876439907230094914}
   - component: {fileID: 30833828743582934}
+  - component: {fileID: 2711151335678301796}
+  - component: {fileID: 3528610857040033235}
   - component: {fileID: 2215661168906075787}
   - component: {fileID: 9195756687020338685}
-  - component: {fileID: 3528610857040033235}
   - component: {fileID: 2082833061803120902}
   - component: {fileID: 1592064443853193872}
-  - component: {fileID: 2711151335678301796}
   - component: {fileID: -3936962385572404406}
   - component: {fileID: 9199439568489813442}
   - component: {fileID: 1468714143258308376}
+  - component: {fileID: -1640212216566660717}
   m_Layer: 7
   m_Name: ExcavatorBuilding 1
   m_TagString: Buildings
@@ -142,6 +143,38 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!95 &2711151335678301796
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9196479097283740973}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a0dbfb07c273daa48b1844102b7d9774, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &3528610857040033235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9196479097283740973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c172ffb22ec57624caeb994c6f62780b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2215661168906075787
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,18 +214,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
---- !u!114 &3528610857040033235
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9196479097283740973}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c172ffb22ec57624caeb994c6f62780b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2082833061803120902
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,26 +249,6 @@ MonoBehaviour:
   roadTop: {fileID: 0}
   produceAmount: 10
   consumeAmount: 5
---- !u!95 &2711151335678301796
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9196479097283740973}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a0dbfb07c273daa48b1844102b7d9774, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
 --- !u!114 &-3936962385572404406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -295,3 +296,16 @@ MonoBehaviour:
   currentSprite: {fileID: 0}
   placeHolderSprites: []
   animatorController: {fileID: 0}
+--- !u!114 &-1640212216566660717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9196479097283740973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddba0d2a042726845835f2d02bbe0c6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: 2

@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEngine;
 
@@ -13,6 +12,7 @@ public class ContractManager : MonoBehaviour
     public bool HasTimeFinished { get; private set; }
 
     [SerializeField] private TextMeshProUGUI remainedTimeTxt;
+    [SerializeField] private TextMeshProUGUI remainedToDeliverforContractTxt;
     [SerializeField] private FactoryResourcesSO factoryResourcesSo;
     [SerializeField] private ContractScriptableObject[] contracts = new ContractScriptableObject[3];
     
@@ -36,7 +36,10 @@ public class ContractManager : MonoBehaviour
     }
     private void Update()
     {
-        if (currentContract != null) TimeCheckForContract();
+        if (currentContract != null)
+        {
+            TimeCheckForContract();
+        }
     }
     private bool HasGoodsDelivered()
     {
@@ -53,12 +56,18 @@ public class ContractManager : MonoBehaviour
             if (!HasGoodsDelivered())
             {
                 CountDown();
+                UpdateDeliveredGoods();
             }
             else
                 ContractIsDelivered();
         }
         else if (remainedTime <= 0 && HasContract)
             CheckValuesForTheContract();
+    }
+
+    private void UpdateDeliveredGoods()
+    {
+        remainedToDeliverforContractTxt.text = (currentContract.currentOrderedGoods - currentContract.deliveredGoods).ToString();
     }
 
 
@@ -75,17 +84,18 @@ public class ContractManager : MonoBehaviour
         Debug.Log("Delivered");
         currentContract.RandomizeItsValues(randomizeContractValues);
         afterContractDelivery.DeliveredSuccessfully(currentContract);
-        currentContract = previousContract;
-        HasContract = false;
+        previousContract = currentContract;
+        previousContract.deliveredGoods = 0;
         currentContract = null;
     }
 
     private void ContractIsNotDelivered()
     {
         Debug.Log("Not Delivered");
-        currentContract.RandomizeItsValues(randomizeContractValues);
+        //when a contract is not delivered, player will be punished. 
         afterContractDelivery.CouldNotDeliveredSuccessfully(currentContract);
-        currentContract = previousContract;
+        currentContract.RandomizeItsValues(randomizeContractValues);
+        previousContract = currentContract;
         HasContract = false;
         currentContract = null;
     }

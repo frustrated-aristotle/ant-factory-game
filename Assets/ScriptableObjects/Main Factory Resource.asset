@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ddacde97505f284d80467f2fe05d606, type: 3}
   m_Name: Main Factory Resource
   m_EditorClassIdentifier: 
-  money: 10
+  money: 10000
   contractGainPerExportedGood: 10
