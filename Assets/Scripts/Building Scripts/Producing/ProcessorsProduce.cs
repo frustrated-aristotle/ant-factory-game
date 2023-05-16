@@ -16,6 +16,7 @@ public class ProcessorsProduce : MainBuildingScript, IProduce
 
     public void Produce()
     {
+        storage.CreateGoodAtConveyorBelt();
         storage.output += produceAmount;
     }
 }

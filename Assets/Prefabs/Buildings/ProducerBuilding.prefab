@@ -161,6 +161,7 @@ MonoBehaviour:
   roadTop: {fileID: 0}
   produceAmount: 10
   consumeAmount: 10
+  cost: 2500
 --- !u!114 &2028117494767706598
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -225,6 +226,7 @@ MonoBehaviour:
   roadTop: {fileID: 0}
   produceAmount: 10
   consumeAmount: 5
+  cost: 0
 --- !u!95 &8085953304375308324
 Animator:
   serializedVersion: 5
@@ -305,3 +307,4 @@ MonoBehaviour:
   currentSprite: {fileID: 0}
   placeHolderSprites: []
   animatorController: {fileID: 0}
+  cost: 0

@@ -35,6 +35,7 @@ public class FertileTileAssigner : MonoBehaviour
             if (!tiles[rand].isItFertile)
             {
                 tiles[rand].GetComponent<SpriteRenderer>().sprite = fertileSprite;
+                tiles[rand].GetComponent<MouseMovementPlaceHolder>().orgSprite = fertileSprite;
                 tiles[rand].isItFertile = true;
             }
             else

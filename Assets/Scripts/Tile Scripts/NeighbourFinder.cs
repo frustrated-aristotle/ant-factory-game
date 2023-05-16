@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Building_Scripts;
 using UnityEngine;
@@ -104,22 +105,32 @@ public class NeighbourFinder : MonoBehaviour
     {
         foreach (GameObject neighbour in neighbours)
         {
-            if (neighbour.CompareTag("Conveyor"))
+            try
             {
-                bool level1 = neighbour.GetComponent<UpgradeHandler>().level == 1;
-                bool level2 = neighbour.GetComponent<UpgradeHandler>().level == 2;    
-                if (level1  || level2)
+                if (neighbour.CompareTag("Conveyor"))
                 {
-                    int indexOfConveyor = neighbours.IndexOf(neighbour);
-                    hasAdjacent[indexOfConveyor] = true;
-                    //adjacentConveyors.Add(neighbour.GetComponent<ConveyorBelt >());
+                    bool level1 = neighbour.GetComponent<UpgradeHandler>().level == 1;
+                    bool level2 = neighbour.GetComponent<UpgradeHandler>().level == 2;    
+                    if (level1  || level2)
+                    {
+                        Debug.Log("CheckConveyors:  " + this.name + " neighbour: " + neighbour.name );
+                        int indexOfConveyor = neighbours.IndexOf(neighbour);
+                        hasAdjacent[indexOfConveyor] = true;
+                        //adjacentConveyors.Add(neighbour.GetComponent<ConveyorBelt >());
+                    }
+                }
+                else if (neighbour.CompareTag("Buildings"))
+                {
+                    int indexOfBuilding = neighbours.IndexOf(neighbour);
+                    hasAdjacent[indexOfBuilding] = true;
                 }
             }
-            else if (neighbour.CompareTag("Buildings"))
+            catch (Exception e)
             {
-                int indexOfBuilding = neighbours.IndexOf(neighbour);
-                hasAdjacent[indexOfBuilding] = true;
+                Debug.Log(e.Message + " This: " + this.name);
+                throw;
             }
+            
         }
     }
 }

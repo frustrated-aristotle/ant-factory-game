@@ -8,33 +8,46 @@ public class BuyAndPlaceBuildables : MonoBehaviour
     private GameObject prior;
 
     public GameObject defaultTile;
-    public void Buy(GameObject tile, GameObject prefab, int level)
+
+    [SerializeField] private FactoryResourcesSO factoryResourcesSo;
+    public void Buy(GameObject tile, GameObject prefab, int level, int cost)
     {
         prior = tile;
         //We will place everything if it is buyable but vehicle. In case of buying a transporter, we first select both home and destiantion of the transporter.
-        PlaceIt(tile, prefab, level);
-    }
-
-    private void PlaceIt(GameObject tile, GameObject prefab, int level)
-    {
-        
-        GameObject newBuildable = Instantiate(prefab, tile.transform.position, prefab.transform.rotation);
-        newBuildable.name = i.ToString();
-        i++;
-        if (newBuildable.gameObject.CompareTag("Buildings"))
+        if (cost <= factoryResourcesSo.money)
         {
-            newBuildable.transform.parent = GameObject.Find("Buildings").transform;
+            factoryResourcesSo.money -= cost;
+            PlaceIt(tile, prefab, level);
         }
         else
         {
-            newBuildable.transform.parent = GameObject.Find("Conveyors").transform;
+            Debug.LogError("YOU DON'T HAVE ENOUGH MONEY YOU POOR BASTARD");
         }
-        newBuildable.GetComponent<MainTileScript>().neighbours = tile.GetComponent<MainTileScript>().neighbours;
+    }
+
+    private void PlaceIt(GameObject tileToBeReplaced, GameObject prefab, int level)
+    {
+        GameObject newBuildable= Instantiate(prefab, tileToBeReplaced.transform.position, prefab.transform.rotation);
+        newBuildable.name = i.ToString();
+        i++;
+        ChangeParent(newBuildable);
+        GetInheritedNeighbours(newBuildable, tileToBeReplaced);
+        GetInheritedFields(newBuildable, tileToBeReplaced, level);
+        Destroy(tileToBeReplaced);
+        foreach (GameObject neighbour in newBuildable.GetComponent<MainTileScript>().neighbours.ToList())
+        {
+            neighbour.GetComponent<MainTileScript>().neighbours.Clear();
+            neighbour.GetComponent<NeighbourFinder>().FindNeighbours();
+        }   
+        //newBuildable.GetComponent<MainTileScript>().neighbours.Clear();
+    }
+
+    private void GetInheritedFields(GameObject newBuildable, GameObject tile, int level)
+    {
         if (newBuildable.GetComponent<UpgradeHandler>())
         {
             newBuildable.GetComponent<UpgradeHandler>().level = level;
         }
-
         if (newBuildable.GetComponent<ConveyorBelt>() && tile.GetComponent<ConveyorBelt>())
         {
             if (newBuildable.GetComponent<UpgradeHandler>().level == 2)
@@ -43,17 +56,26 @@ public class BuyAndPlaceBuildables : MonoBehaviour
             }
             newBuildable.GetComponent<ConveyorBelt>().spriteWithArrow = tile.GetComponent<ConveyorBelt>().spriteWithArrow;
         }
-        //We can fire a funciton in neighbourfinder script that is for new conveyors. It will basically do the same job
-        //but after finding neighbours.
-        Destroy(tile);
-        foreach (GameObject neighbour in newBuildable.GetComponent<MainTileScript>().neighbours.ToList())
+    }
+
+    private void GetInheritedNeighbours(GameObject newBuildable, GameObject tile)
+    {
+        newBuildable.GetComponent<MainTileScript>().neighbours = tile.GetComponent<MainTileScript>().neighbours;
+    }
+
+    private void ChangeParent(GameObject newBuildable)
+    {
+        if (newBuildable.gameObject.CompareTag("Buildings"))
         {
-            neighbour.GetComponent<MainTileScript>().neighbours.Clear();
-            //neighbour.GetComponent<MainTileScript>().adjacentConveyorBelts.Clear();
-            neighbour.GetComponent<NeighbourFinder>().FindNeighbours();
-            //int index = neighbour.GetComponent<MainTileScript>().neighbours.IndexOf(tile);
-            //neighbour.GetComponent<MainTileScript>().neighbours[index] = newBuildable;
-        }   
-        newBuildable.GetComponent<MainTileScript>().neighbours.Clear();
+            newBuildable.transform.parent = GameObject.Find("Buildings").transform;
+        }
+        else if (newBuildable.gameObject.CompareTag("Conveyor"))
+        {
+            newBuildable.transform.parent = GameObject.Find("Conveyors").transform;
+        }
+        else
+        {
+            newBuildable.transform.parent = GameObject.Find("ReplacedTiles").transform;
+        }
     }
 }

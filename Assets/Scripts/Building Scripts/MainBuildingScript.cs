@@ -9,7 +9,8 @@ namespace Building_Scripts
         
         public int produceAmount = 10;
         public int consumeAmount = 5;
-
+        public int cost;
+        
         protected Storage storage;
         protected ContractManager contractManager;
         private ProduceDelegator produceDelegator;

@@ -15,17 +15,17 @@ MonoBehaviour:
   manager: {fileID: 4276109634733722265, guid: d9a870087c81e3243af14a1c20b8e1ad, type: 3}
   image: {fileID: 0}
   contractName: First Contract
-  currentOrderedGoods: 105
-  currentDeliverTime: 103
-  currentGain: 1050
-  currentLose: 1470
+  currentOrderedGoods: 104
+  currentDeliverTime: 101
+  currentGain: 1040
+  currentLose: 1040
   currentGainMultiplier: 10
-  currentLoseMultiplier: 14
+  currentLoseMultiplier: 10
   mainOrderedGoods: 100
   mainDeliverTime: 100
   mainGain: 100
   mainLose: 100
   mainGainMultiplier: 10
   mainLoseMultiplier: 10
-  deliveredGoods: 86
+  deliveredGoods: 0
   type: 1

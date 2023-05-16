@@ -4,7 +4,7 @@ public class MouseMovementPlaceHolder : MonoBehaviour
 {
     //! this gamestateso will be changed to another specialized script file.
 
-    [SerializeField]private Sprite orgSprite;
+    public Sprite orgSprite;
     private TileMouseEnterExitHandler tileMouseEnterExitHandler;
     
     //States
@@ -20,6 +20,7 @@ public class MouseMovementPlaceHolder : MonoBehaviour
 
     private void OnMouseEnter()
     {
+        
         if (stateManager.AreStatesTheSame(States.PURCHASE))
         {
             Entered();

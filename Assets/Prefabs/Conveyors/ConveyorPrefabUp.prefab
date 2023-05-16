@@ -184,6 +184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f977440880a2c24ea33f5ad07002a5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fr: {fileID: 11400000, guid: 88637bca9ddaac0489b1bd1a009263a7, type: 2}
   direction: 1
   inheretedDirection: 0
   instantiationPos: {x: 0, y: 0, z: 0}
@@ -196,6 +197,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 1667b404895df3e4288b8c37995f31f2, type: 3}
   - {fileID: 21300000, guid: 8a4e7ca736f7c9b43b00916a17069a61, type: 3}
   animatorController: {fileID: 0}
+  cost: 100
 --- !u!114 &4600975927352483467
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -6,11 +6,14 @@ using static GameStateManager.States;
 [RequireComponent(typeof(RequiredGameManagerScript))]
 public class UIManager : MonoBehaviour
 {
+    private GameObject activeUI;
     [SerializeField] private GameObject contractUI;
     [SerializeField] private GameObject loanUI;
     [SerializeField] private GameObject buildableUI;
     [SerializeField] private GameObject moneyUI;
-
+    [SerializeField] private GameObject landsUI;
+    
+    
     private DisplayContract displayContract;
     private DisplayLoan displayLoan;
 
@@ -18,8 +21,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameStateManager gameStateManager;
     [SerializeField] private FactoryResourcesSO factoryResourcesSo;
     [SerializeField] private TextMeshProUGUI moneyText;
+    [SerializeField] private TextMeshProUGUI storedWheatText;
 
-    //States
+    
     private void Start()
     {
         displayContract = GameObject.FindObjectOfType<DisplayContract>();
@@ -32,6 +36,7 @@ public class UIManager : MonoBehaviour
     {
         KeyInputs();
         DisplayMoney();
+        DisplayStoredGoods();
     }
 
     private void DisplayMoney()
@@ -39,17 +44,21 @@ public class UIManager : MonoBehaviour
         moneyText.text = factoryResourcesSo.money.ToString();
     }
 
+    private void DisplayStoredGoods()
+    {
+        storedWheatText.text = factoryResourcesSo.storedGoods.ToString();
+    }
+
     private void KeyInputs()
     {
         if (Input.GetKeyDown(KeyCode.B) && !buildableUI.activeSelf)
         {
+            OpenUI(buildableUI);
             gameStateManager.ChangeTheGameState(PURCHASE);
-            //gameStateSo.MakeTheStatePurchaseState();
-            buildableUI.SetActive(true);
         }
         else if (Input.GetKeyDown(KeyCode.B) && buildableUI.activeSelf)
         {
-            buildableUI.SetActive(false);
+            CloseUI(buildableUI);
            // gameStateSo.TurnRotationToZero();
             gameStateManager.ChangeTheGameState(NORMAL);
         }
@@ -60,24 +69,36 @@ public class UIManager : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.C) && !contractUI.activeSelf)
         {
+            OpenUI(contractUI);
             gameStateManager.ChangeTheGameState(CONTRACTS);
-            contractUI.SetActive(true);
             displayContract.DisplayAllContracts();
         }
         else if (Input.GetKeyDown(KeyCode.C) && contractUI.activeSelf)
         {
-            contractUI.SetActive(false);
+            CloseUI(contractUI);
             gameStateManager.ChangeTheGameState(NORMAL);
         }
         else if (Input.GetKeyDown(KeyCode.L) && !loanUI.activeSelf)
         {
+            OpenUI(loanUI);
             loanUI.SetActive(true);
             displayLoan.DisplayAllLoans();
             gameStateManager.ChangeTheGameState(LOAN);
         }
         else if (Input.GetKeyDown(KeyCode.L) && loanUI.activeSelf)
         {
-            loanUI.SetActive(false);
+            CloseUI(loanUI);
+            gameStateManager.ChangeTheGameState(NORMAL);
+        }
+        else if (Input.GetKeyDown(KeyCode.Z) && !landsUI.activeSelf)
+        {
+            OpenUI(landsUI);
+            landsUI.SetActive(true);
+            gameStateManager.ChangeTheGameState(LANDS);
+        }
+        else if (Input.GetKeyDown(KeyCode.Z) && landsUI.activeSelf)
+        {
+            CloseUI(landsUI);
             gameStateManager.ChangeTheGameState(NORMAL);
         }
         else if (Input.GetKeyDown(KeyCode.O) && !conveyorManager.isDirectionOverlayOpened)
@@ -93,5 +114,23 @@ public class UIManager : MonoBehaviour
             conveyorManager.isDirectionOverlayOpened = false;
             conveyorManager.HideConveyorsDirection();
         }
+        
+    }
+
+    private void OpenUI(GameObject toBeOpened)
+    {
+        if (activeUI != null)
+        {
+            GameObject toBeClosed = activeUI;
+            toBeClosed.SetActive(false);
+        }
+        activeUI = toBeOpened;
+        toBeOpened.SetActive(true);
+    }
+
+    private void CloseUI(GameObject toBeClosed)
+    {
+        toBeClosed.SetActive(false);
+        activeUI = null;
     }
 }

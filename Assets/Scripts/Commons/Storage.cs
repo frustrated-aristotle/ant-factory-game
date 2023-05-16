@@ -14,7 +14,7 @@ public class Storage : MonoBehaviour
 
     private void Start()
     {
-        InvokeRepeating(nameof(CreateGoodAtConveyorBelt), 0f, 1f);
+        //InvokeRepeating(nameof(CreateGoodAtConveyorBelt), 0f, 1f);
     }
     
     #region Input Process
@@ -28,8 +28,12 @@ public class Storage : MonoBehaviour
     
     #region Output Process
 
-    private void CreateGoodAtConveyorBelt()
+    public void CreateGoodAtConveyorBelt()
     {
+        if (GetComponent<ProcessorsProduce>())
+        {
+            Debug.Log("a");
+        }
         if (startingConveyor != null)
         {
             posToInstantiate = startingConveyor.instantiationPos;

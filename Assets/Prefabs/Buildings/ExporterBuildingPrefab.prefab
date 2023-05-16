@@ -161,6 +161,7 @@ MonoBehaviour:
   roadTop: {fileID: 0}
   produceAmount: 10
   consumeAmount: 60
+  cost: 3750
 --- !u!114 &2028117494767706598
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -245,6 +246,7 @@ MonoBehaviour:
   roadTop: {fileID: 0}
   produceAmount: 1
   consumeAmount: 1
+  cost: 0
   factoryResourcesSo: {fileID: 11400000, guid: 88637bca9ddaac0489b1bd1a009263a7, type: 2}
   currentContract: {fileID: 0}
   remainedGoodsToDeliverTXT: {fileID: 0}
@@ -308,3 +310,4 @@ MonoBehaviour:
   currentSprite: {fileID: 0}
   placeHolderSprites: []
   animatorController: {fileID: 0}
+  cost: 0

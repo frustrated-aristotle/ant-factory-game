@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Building_Scripts;
 using UnityEngine;
 
 public class GameStateManager : MonoBehaviour
@@ -17,6 +18,8 @@ public class GameStateManager : MonoBehaviour
     
     //MouseMovement
     public GameObject gameObjectThatMouseIsOver;
+
+    [SerializeField] private Sprite excavator, processor, exporter;
 
     #endregion
 
@@ -44,6 +47,7 @@ public class GameStateManager : MonoBehaviour
         CONTRACTS = 3,
         LOAN = 4,
         DISPLAY,
+        LANDS,
     }
 
     private void Awake()
@@ -97,6 +101,22 @@ public class GameStateManager : MonoBehaviour
     #region Sprite
     public Sprite GetSprite()
     {
+        if (buildableToPlace.GetComponent<MainBuildingScript>())
+        {
+            if (buildableToPlace.GetComponent<ExcavatorProduce>())
+            {
+                return excavator;
+            }
+            else if (buildableToPlace.GetComponent<ProcessorsProduce>())
+            {
+                return processor;
+                
+            }
+            else if (buildableToPlace.GetComponent<ExportersProduce>())
+            {
+                return exporter;
+            }
+        }
         return conveyorSprites[currentConveyorIndex];
     }
     #endregion

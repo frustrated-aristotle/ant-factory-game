@@ -15,6 +15,7 @@ public class ExcavatorProduce : MainBuildingScript, IProduce
 
     public void Produce()
     {
+        storage.CreateGoodAtConveyorBelt();
         storage.output += produceAmount;
     }
 }

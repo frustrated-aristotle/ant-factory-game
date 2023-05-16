@@ -14,7 +14,7 @@
 
     private BuyAndPlaceBuildables buyAndPlaceBuildables;
     private BuildingUIScript buildingUI;
-    
+
     //States
     private GameStateManager stateManager;
     
@@ -38,16 +38,16 @@
         {
             if (buildableToPlace != null && !buildableToPlace.GetComponent<MainBuildingScript>())
             {
-                buyAndPlaceBuildables.Buy(this.gameObject, buildableToPlace, 1);
+                buyAndPlaceBuildables.Buy(this.gameObject, buildableToPlace, 1, buildableToPlace.GetComponent<ConveyorBelt>().cost);
             }
             else if (buildableToPlace != null && buildableToPlace.GetComponent<MainBuildingScript>() && isItFertile) 
             {
-                buyAndPlaceBuildables.Buy(this.gameObject, buildableToPlace, 1);
+                buyAndPlaceBuildables.Buy(this.gameObject, buildableToPlace, 1, buildableToPlace.GetComponent<MainBuildingScript>().cost);
             }
         }
         else if (stateManager.AreStatesTheSame(States.BULLDOZE) && GetComponent<ConveyorBelt>())
         {
-            buyAndPlaceBuildables.Buy(gameObject, emptyTile, 1);
+            buyAndPlaceBuildables.Buy(gameObject, emptyTile, 1, 0);
         }
     }
     #endregion

@@ -18,7 +18,7 @@ public class ExportersProduce : MainBuildingScript, IProduce
     }
     public void StartProducingSequence()
     {
-        if (contractManager.HasContract && storage.input >= consumeAmount)
+        if (/*contractManager.HasContract && */storage.input >= consumeAmount)
         {
             Consume();
         }
@@ -32,8 +32,22 @@ public class ExportersProduce : MainBuildingScript, IProduce
 
     public void Produce()
     {
-        currentContract.deliveredGoods += consumeAmount;
+        if (currentContract != null)
+        {
+            currentContract.deliveredGoods += consumeAmount;
+            float remainedGodsToDeliver = currentContract.currentOrderedGoods - currentContract.deliveredGoods;
+        }
+        else
+        {
+            Debug.Log("else");
+            // We need to store those goods.
+            Store();
+        }
         //factoryResourcesSo.money += consumeAmount * factoryResourcesSo.contractGainPerExportedGood;
-        float remainedGodsToDeliver = currentContract.currentOrderedGoods - currentContract.deliveredGoods;
+    }
+
+    private void Store()
+    {
+        factoryResourcesSo.storedGoods += consumeAmount;
     }
 }

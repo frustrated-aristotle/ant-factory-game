@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Building_Scripts;
 using UnityEngine;
 
@@ -12,6 +13,7 @@ public class ConveyorBelt : MonoBehaviour
       DOWN,
    }
 
+   [SerializeField] private FactoryResourcesSO fr;
    Animator anim;
    public Direction direction;
    public Direction inheretedDirection;
@@ -28,7 +30,8 @@ public class ConveyorBelt : MonoBehaviour
    private BuyAndPlaceBuildables buyAndPlaceBuildables;
 
    public RuntimeAnimatorController animatorController;
-   
+
+   public int cost;
    
    //Directions
    
@@ -51,6 +54,7 @@ public class ConveyorBelt : MonoBehaviour
    
    private void Start()
    {
+      Debug.Log("b");
       GetNeighbours();
    }
 
@@ -63,7 +67,8 @@ public class ConveyorBelt : MonoBehaviour
    {
       if (Input.GetMouseButtonDown(1))
       {
-         buyAndPlaceBuildables.Buy(this.gameObject, buyAndPlaceBuildables.defaultTile, 0);
+         buyAndPlaceBuildables.Buy(this.gameObject, buyAndPlaceBuildables.defaultTile, 0, 0);
+         fr.money += cost;
          //buyAndPlaceBuildables.PlaceNormalTile(this.gameObject);
       }
    }

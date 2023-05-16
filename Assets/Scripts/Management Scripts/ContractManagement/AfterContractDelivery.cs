@@ -15,6 +15,6 @@ public class AfterContractDelivery : MonoBehaviour
         //We will find the money with this formula
 
         float moneyToAdd = contract.currentGain / contract.currentOrderedGoods * contract.deliveredGoods;
-        factoryResourcesSo.money -= contract.currentLose + (int)moneyToAdd;
+        factoryResourcesSo.money -= contract.currentLose - (int)moneyToAdd;
     }
 }

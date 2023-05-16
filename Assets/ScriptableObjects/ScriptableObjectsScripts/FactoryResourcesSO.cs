@@ -5,4 +5,6 @@ public class FactoryResourcesSO : ScriptableObject
 {
     public int money;
     public int contractGainPerExportedGood;
+
+    public int storedGoods;
 }

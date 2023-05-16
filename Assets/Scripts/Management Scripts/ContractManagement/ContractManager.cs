@@ -8,7 +8,12 @@ public class ContractManager : MonoBehaviour
 {
     [SerializeField]private float remainedTime;
 
-    public bool HasContract { get; private set; }
+    public bool HasContract
+    {
+        get => hasContract;
+        private set => hasContract = value;
+    }
+
     public bool HasTimeFinished { get; private set; }
 
     [SerializeField] private TextMeshProUGUI remainedTimeTxt;
@@ -20,10 +25,13 @@ public class ContractManager : MonoBehaviour
     private RandomizeContractValues randomizeContractValues;
     public  ContractScriptableObject currentContract, previousContract;
 
+    private DisplayContract displayContract;
     private List<ExportersProduce> producers = new List<ExportersProduce>();
+    [SerializeField] private bool hasContract;
 
     private void Awake()
     {
+        displayContract = GameObject.FindObjectOfType<DisplayContract>();
         randomizeContractValues = GetComponent<RandomizeContractValues>();
         foreach (ContractScriptableObject contract in contracts)
         {
@@ -87,6 +95,8 @@ public class ContractManager : MonoBehaviour
         previousContract = currentContract;
         previousContract.deliveredGoods = 0;
         currentContract = null;
+        HasContract = false;
+        displayContract.DisplayAllContracts();
     }
 
     private void ContractIsNotDelivered()
@@ -96,8 +106,10 @@ public class ContractManager : MonoBehaviour
         afterContractDelivery.CouldNotDeliveredSuccessfully(currentContract);
         currentContract.RandomizeItsValues(randomizeContractValues);
         previousContract = currentContract;
+        previousContract.deliveredGoods = 0;
         HasContract = false;
         currentContract = null;
+        displayContract.DisplayAllContracts();
     }
     private void CountDown()
     {
@@ -110,11 +122,27 @@ public class ContractManager : MonoBehaviour
     {
         currentContract = newContract;
         HasContract = true;
+        GiveStoredGoods();
         remainedTime = currentContract.currentDeliverTime;
         producers = GameObject.FindObjectsOfType<ExportersProduce>().ToList();
         foreach (ExportersProduce producer in producers)
         {
             producer.currentContract = currentContract;
+        }
+        
+    }
+
+    private void GiveStoredGoods()
+    {
+        if (currentContract.currentOrderedGoods < factoryResourcesSo.storedGoods )
+        {
+            currentContract.deliveredGoods = currentContract.currentOrderedGoods;
+            factoryResourcesSo.storedGoods -= currentContract.currentOrderedGoods;
+        }
+        else
+        {
+            currentContract.deliveredGoods += factoryResourcesSo.storedGoods;
+            factoryResourcesSo.storedGoods = 0;
         }
     }
 }
