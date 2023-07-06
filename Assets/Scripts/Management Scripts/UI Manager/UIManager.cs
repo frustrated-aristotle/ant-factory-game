@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject buildableUI;
     [SerializeField] private GameObject moneyUI;
     [SerializeField] private GameObject landsUI;
+    [SerializeField] private GameObject infoUI;
     
     
     private DisplayContract displayContract;
@@ -100,6 +101,15 @@ public class UIManager : MonoBehaviour
         {
             CloseUI(landsUI);
             gameStateManager.ChangeTheGameState(NORMAL);
+        }
+        else if (Input.GetKeyDown(KeyCode.N) && !infoUI.activeSelf)
+        {
+            OpenUI(infoUI);
+            landsUI.SetActive(true);
+        }
+        else if (Input.GetKeyDown(KeyCode.N) && infoUI.activeSelf)
+        {
+            CloseUI(infoUI);            
         }
         else if (Input.GetKeyDown(KeyCode.O) && !conveyorManager.isDirectionOverlayOpened)
         {

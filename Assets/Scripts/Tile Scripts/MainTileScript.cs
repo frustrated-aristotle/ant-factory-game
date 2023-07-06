@@ -25,6 +25,8 @@
   //public List<GameObject> adjacentRoads = new List<GameObject>();
     private void Start()
     {
+        
+       // Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(), );
         stateManager = GameObject.FindObjectOfType<GameStateManager>();
         buyAndPlaceBuildables = GameObject.FindObjectOfType<BuyAndPlaceBuildables>();
         buildingUI = GameObject.FindObjectOfType<BuildingUIScript>();
